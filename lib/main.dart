@@ -18,15 +18,13 @@ class MyApp extends StatelessWidget {
       darkTheme: FlexThemeData.dark(scheme: FlexScheme.brandBlue),
       // Use dark or light theme based on system setting.
       themeMode: ThemeMode.system,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -45,7 +43,23 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        centerTitle: false,
+        title: const Text("ブラウザ管理アプリ"),
+        elevation: 10,
+        actions: [
+          Container(
+            margin: const EdgeInsets.only(right: 10),
+            child: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.account_circle_rounded)),
+          ),
+          Container(
+            margin: const EdgeInsets.only(right: 10),
+            child: IconButton(
+                onPressed: () {}, icon: const Icon(Icons.input_rounded)),
+          ),
+        ],
+      ),
       ),
       body: Center(
         child: Column(
