@@ -32,14 +32,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   int selectedIndex = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  bool _isExtended = true;
 
   @override
   Widget build(BuildContext context) {
@@ -65,21 +59,35 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Row(
         children: [
           NavigationRail(
+            extended: _isExtended,
+            leading: InkWell(
+              child: const Icon(Icons.menu),
+              onTap: () {
+                setState(() {
+                  _isExtended = !_isExtended;
+                });
+              },
+            ),
             selectedIndex: selectedIndex,
             destinations: const [
               NavigationRailDestination(
-                icon: Icon(Icons.home),
-                label: Text('Home'),
+                icon: Icon(Icons.dashboard),
+                label: Text('dashboard'),
               ),
               NavigationRailDestination(
-                icon: Icon(Icons.bookmark),
-                label: Text('Bookmark'),
+                icon: Icon(Icons.insert_chart),
+                label: Text('chart'),
               ),
               NavigationRailDestination(
-                icon: Icon(Icons.people),
-                label: Text('Friends'),
+                icon: Icon(Icons.add),
+                label: Text('register'),
+              ),
+              NavigationRailDestination(
+                icon: Icon(Icons.settings),
+                label: Text('setting'),
               ),
             ],
+            labelType: NavigationRailLabelType.none,
             onDestinationSelected: (index) {
               setState(() {
                 selectedIndex = index;
@@ -89,11 +97,6 @@ class _MyHomePageState extends State<MyHomePage> {
           SelectSidebarContent(selectedIndex: selectedIndex),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
