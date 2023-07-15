@@ -9,29 +9,26 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: FlexThemeData.light(scheme: FlexScheme.brandBlue),
-      // The Mandy red, dark theme.
       darkTheme: FlexThemeData.dark(scheme: FlexScheme.brandBlue),
-      // Use dark or light theme based on system setting.
       themeMode: ThemeMode.system,
-      home: const MyHomePage(),
+      home: const BaseContainer(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class BaseContainer extends StatefulWidget {
+  const BaseContainer({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<BaseContainer> createState() => _BaseContainerState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _BaseContainerState extends State<BaseContainer> {
   int selectedIndex = 0;
   bool _isExtended = true;
 
