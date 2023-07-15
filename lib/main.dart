@@ -1,3 +1,4 @@
+import 'package:browser_tab_management_app/select_sidebar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 
@@ -32,7 +33,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  int _selectedIndex = 0;
+  int selectedIndex = 0;
 
   void _incrementCounter() {
     setState(() {
@@ -64,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Row(
         children: [
           NavigationRail(
-            selectedIndex: _selectedIndex,
+            selectedIndex: selectedIndex,
             destinations: const [
               NavigationRailDestination(
                 icon: Icon(Icons.home),
@@ -79,15 +80,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 label: Text('Friends'),
               ),
             ],
+            onDestinationSelected: (index) {
+              setState(() {
+                selectedIndex = index;
+              });
+            },
           ),
-          Expanded(
-            child: ColoredBox(
-              color: Colors.blue[200]!,
-              child: const Center(
-                child: Text('Bookmark'),
-              ),
-            ),
-          )
+          SelectSidebarContent(selectedIndex: selectedIndex),
         ],
       ),
       floatingActionButton: FloatingActionButton(
