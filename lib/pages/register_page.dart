@@ -49,7 +49,12 @@ class RegisterPage extends StatelessWidget {
                   maxLines: 1,
                   decoration: InputDecoration(
                       fillColor: Theme.of(context).cardColor,
-                      border: const OutlineInputBorder(),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Theme.of(context).cardColor)),
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).primaryColor)),
                       labelText: "URLを入力"),
                 ),
               ),
