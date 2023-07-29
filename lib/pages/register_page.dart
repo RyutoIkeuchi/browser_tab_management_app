@@ -2,6 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:metadata_fetch/metadata_fetch.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final ogpDataFromInputUrlProvider = StateProvider((ref) {
+  return null;
+});
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
