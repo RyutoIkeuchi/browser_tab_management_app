@@ -5,38 +5,15 @@ import 'package:metadata_fetch/metadata_fetch.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/preview_register_ogp_data.dart';
+import '../provider/ogp_data.dart';
 
-final ogpDataFromInputUrlProvider = StateProvider((ref) {
-  return null;
-});
-
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends ConsumerWidget {
   const RegisterPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    String? _getContent({
-      dynamic document,
-      String tag = 'meta',
-      String attribute = 'property',
-      String? property,
-      String key = 'content',
-    }) {
-      return document
-          ?.getElementsByTagName("meta")
-          .cast<Element?>()
-          .firstWhere(
-              (element) => element?.attributes["property"] == "og:title",
-              orElse: () => null)
-          ?.attributes["content"];
-    }
-
-    Future handleGetThumbnailFromWeb() async {
-      final url = 'https://flutter.dev';
-      var data = await MetadataFetch.extract(url);
-
-      print(data?.title);
-      print(data?.image);
+  Widget build(BuildContext context, WidgetRef ref) {
+    handleGetThumbnailFromWeb() {
+      ref.read(ogpDataProvider.notifier).getOgpData("https://flutter.dev");
     }
 
     return Expanded(
@@ -62,11 +39,11 @@ class RegisterPage extends StatelessWidget {
               ),
               TextButton(
                   onPressed: handleGetThumbnailFromWeb,
-                  child: Text('webサイトのmetaデータを取得')),
+                  child: const Text('webサイトのmetaデータを取得')),
               Container(
-                margin: EdgeInsets.symmetric(vertical: 50),
-                child: PreviewRegisterOgpData(),
-              )
+                margin: const EdgeInsets.symmetric(vertical: 50),
+                child: const PreviewRegisterOgpData(),
+              ),
             ]),
           )),
     );
