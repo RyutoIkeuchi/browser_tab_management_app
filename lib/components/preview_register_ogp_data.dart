@@ -28,12 +28,19 @@ class PreviewRegisterOgpData extends ConsumerWidget {
             child: Column(
               children: [
                 Container(
+                  width: double.infinity,
+                  height: 250,
                   decoration: BoxDecoration(
                       border: Border(
                           bottom: BorderSide(
                               color: Theme.of(context).shadowColor,
                               width: 0.4))),
-                  child: Image.network(data?.image),
+                  child: data.image != ""
+                      ? Image.network(data.image, fit: BoxFit.cover)
+                      : ColoredBox(
+                          color: Theme.of(context).hintColor,
+                          child: const Center(child: Text('サムネイル')),
+                        ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10),
