@@ -2,20 +2,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:metadata_fetch/metadata_fetch.dart';
 
 final ogpDataProvider =
-    StateNotifierProvider<OgpDataNotifier, AsyncValue<dynamic>>(
+    StateNotifierProvider<OgpDataNotifier, AsyncValue<Metadata>>(
         (ref) => OgpDataNotifier());
 
-class OgpDataNotifier extends StateNotifier<AsyncValue<dynamic>> {
-  OgpDataNotifier() : super(AsyncData(INITIAL_OGP_DATA));
+class OgpDataNotifier extends StateNotifier<AsyncValue<Metadata>> {
+  OgpDataNotifier() : super(AsyncData(initialMetadata()));
 
   getOgpData(inputUrl) async {
-    final response = await MetadataFetch.extract(inputUrl);
-    state = AsyncData(response);
+    state = const AsyncLoading();
+    final Metadata? response = await MetadataFetch.extract(inputUrl);
+    state = AsyncData(response as Metadata);
   }
 }
 
-final INITIAL_OGP_DATA = {
-  "image": "",
-  "title": "",
-  "description": "",
-};
+Metadata initialMetadata() {
+  final m = Metadata();
+  m.title = "";
+  m.description = "";
+  m.image = "";
+  return m;
+}
