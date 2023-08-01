@@ -5,22 +5,31 @@ import 'package:metadata_fetch/metadata_fetch.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/preview_register_ogp_data.dart';
-import '../provider/input_register_url.dart';
 import '../provider/ogp_data.dart';
 
-class RegisterPage extends ConsumerWidget {
-  const RegisterPage({super.key});
+class RegisterPage extends ConsumerStatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final String inputRegisterUrl = ref.watch(inputRegisterUrlProvider);
+  _RegisterPageState createState() => _RegisterPageState();
+}
 
-    final TextEditingController _controller = TextEditingController();
+class _RegisterPageState extends ConsumerState<RegisterPage> {
+  final TextEditingController _controller = TextEditingController();
 
+  @override
+  void initState() {}
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     handleGetThumbnailFromWeb() {
-      ref
-          .read(ogpDataProvider.notifier)
-          .getOgpData("https://www.youtube.com/watch?v=NbJi6Bbd5wo");
+      ref.read(ogpDataProvider.notifier).getOgpData(_controller.text);
     }
 
     return Expanded(
@@ -34,10 +43,6 @@ class RegisterPage extends ConsumerWidget {
                 child: TextField(
                   controller: _controller,
                   maxLines: 1,
-                  onChanged: (value) {
-                    ref.read(inputRegisterUrl as ProviderListenable).state =
-                        _controller.text;
-                  },
                   decoration: InputDecoration(
                       fillColor: Theme.of(context).cardColor,
                       enabledBorder: OutlineInputBorder(

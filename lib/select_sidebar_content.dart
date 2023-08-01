@@ -12,7 +12,7 @@ class SelectSidebarContent extends StatelessWidget {
   final List<Widget> _pageList = [
     const DashboardPage(),
     const ChartPage(),
-    const RegisterPage(),
+    RegisterPage(),
     const SettingPage()
   ];
 
