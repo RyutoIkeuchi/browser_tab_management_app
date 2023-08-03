@@ -38,25 +38,34 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(children: [
-              SizedBox(
-                width: 1000,
-                child: TextField(
-                  controller: _controller,
-                  maxLines: 1,
-                  decoration: InputDecoration(
-                      fillColor: Theme.of(context).cardColor,
-                      enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Theme.of(context).cardColor)),
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Theme.of(context).primaryColor)),
-                      labelText: "URLを入力"),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 800,
+                    child: TextField(
+                      controller: _controller,
+                      maxLines: 1,
+                      decoration: InputDecoration(
+                          fillColor: Theme.of(context).cardColor,
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).cardColor)),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).primaryColor)),
+                          labelText: "URLを入力"),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                    width: 200,
+                    child: ElevatedButton(
+                        onPressed: handleGetThumbnailFromWeb,
+                        child: const Text('metaデータを取得')),
+                  ),
+                ],
               ),
-              TextButton(
-                  onPressed: handleGetThumbnailFromWeb,
-                  child: const Text('webサイトのmetaデータを取得')),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 50),
                 child: const PreviewRegisterOgpData(),
