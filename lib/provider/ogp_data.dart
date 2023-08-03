@@ -17,8 +17,8 @@ class OgpDataNotifier extends StateNotifier<AsyncValue<Metadata>> {
 
 Metadata initialMetadata() {
   final m = Metadata();
-  m.title = "";
-  m.description = "";
+  m.title = "ここにタイトルが入ります";
+  m.description = "ここにブラウザの詳細情報が入ります。";
   m.image = "";
   return m;
 }
