@@ -4,11 +4,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../pages/register_page.dart';
 import '../provider/ogp_data.dart';
 
-class PreviewRegisterOgpData extends ConsumerWidget {
+class PreviewRegisterOgpData extends ConsumerStatefulWidget {
   const PreviewRegisterOgpData({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _PreviewRegisterOgpDataState createState() => _PreviewRegisterOgpDataState();
+}
+
+class _PreviewRegisterOgpDataState
+    extends ConsumerState<PreviewRegisterOgpData> {
+  bool _isOpenAbilityModal = false;
+
+  @override
+  Widget build(BuildContext context) {
     final AsyncValue<dynamic> ogpDataFromInputUrl = ref.watch(ogpDataProvider);
 
     return ogpDataFromInputUrl.when(
@@ -75,49 +83,85 @@ class PreviewRegisterOgpData extends ConsumerWidget {
                             style: TextStyle(fontSize: 16),
                           ),
                         ),
-                        Container(
-                          child: Row(children: [
-                            Container(
-                              margin: EdgeInsets.only(right: 6),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: Theme.of(context).focusColor),
-                              child: Text(
-                                'Hello',
-                                style: TextStyle(
-                                    color: Theme.of(context).hintColor),
-                              ),
+                        OutlinedButton(
+                          onPressed: () {
+                            setState(() {
+                              _isOpenAbilityModal = !_isOpenAbilityModal;
+                            });
+                          },
+                          style: ButtonStyle(
+                              side: MaterialStateProperty.all<BorderSide>(
+                                  BorderSide.none)),
+                          child: Container(
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                Row(children: [
+                                  Container(
+                                    margin: EdgeInsets.only(right: 6),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 5),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        color: Theme.of(context).focusColor),
+                                    child: Text(
+                                      'Hello',
+                                      style: TextStyle(
+                                          color: Theme.of(context).hintColor),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(right: 6),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 5),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        color: Theme.of(context).focusColor),
+                                    child: Text(
+                                      'World',
+                                      style: TextStyle(
+                                          color: Theme.of(context).hintColor),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(right: 6),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 5),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        color: Theme.of(context).focusColor),
+                                    child: Text(
+                                      '!!!!!!!!!!!',
+                                      style: TextStyle(
+                                          color: Theme.of(context).hintColor),
+                                    ),
+                                  ),
+                                ]),
+                                Container(
+                                  child: _isOpenAbilityModal
+                                      ? Positioned(
+                                          top: 0,
+                                          left: 0,
+                                          width: 250,
+                                          height: 250,
+                                          child: Container(
+                                            width: 150,
+                                            height: 150,
+                                            color: Colors.red[400],
+                                            child: const Text(
+                                              '赤（真ん中）',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 20),
+                                            ),
+                                          ),
+                                        )
+                                      : null,
+                                )
+                              ],
                             ),
-                            Container(
-                              margin: EdgeInsets.only(right: 6),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: Theme.of(context).focusColor),
-                              child: Text(
-                                'World',
-                                style: TextStyle(
-                                    color: Theme.of(context).hintColor),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(right: 6),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: Theme.of(context).focusColor),
-                              child: Text(
-                                '!!!!!!!!!!!',
-                                style: TextStyle(
-                                    color: Theme.of(context).hintColor),
-                              ),
-                            ),
-                          ]),
-                        )
+                          ),
+                        ),
                       ]),
                 ),
               ],
