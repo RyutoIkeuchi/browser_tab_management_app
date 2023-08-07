@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../pages/register_page.dart';
@@ -13,7 +14,20 @@ class PreviewRegisterOgpData extends ConsumerStatefulWidget {
 
 class _PreviewRegisterOgpDataState
     extends ConsumerState<PreviewRegisterOgpData> {
+  final _key = GlobalKey();
+
   bool _isOpenAbilityModal = false;
+  double abilityWidth = 0;
+
+  @override
+  void initState() {
+    SchedulerBinding.instance!.addPostFrameCallback((_) {
+      setState(() {
+        abilityWidth = _key.currentContext!.size!.width;
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +108,7 @@ class _PreviewRegisterOgpDataState
                                   BorderSide.none)),
                           child: Container(
                             child: Stack(
+                              key: _key,
                               clipBehavior: Clip.none,
                               children: [
                                 Row(children: [
@@ -142,16 +157,25 @@ class _PreviewRegisterOgpDataState
                                       ? Positioned(
                                           top: 0,
                                           left: 0,
-                                          width: 250,
+                                          width: abilityWidth,
                                           height: 250,
                                           child: Container(
                                             width: 150,
                                             height: 150,
-                                            color: Colors.red[400],
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.black26,
+                                                    offset: Offset(10, 10),
+                                                    blurRadius: 10.0,
+                                                    spreadRadius: 1.0,
+                                                  ),
+                                                ]),
                                             child: const Text(
                                               '赤（真ん中）',
                                               style: TextStyle(
-                                                  color: Colors.white,
+                                                  color: Colors.black,
                                                   fontSize: 20),
                                             ),
                                           ),
