@@ -111,47 +111,53 @@ class _PreviewRegisterOgpDataState
                               key: _key,
                               clipBehavior: Clip.none,
                               children: [
-                                Row(children: [
-                                  Container(
-                                    margin: EdgeInsets.only(right: 6),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 5),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
-                                        color: Theme.of(context).focusColor),
-                                    child: Text(
-                                      'Hello',
-                                      style: TextStyle(
-                                          color: Theme.of(context).hintColor),
+                                Padding(
+                                  padding: EdgeInsets.all(6),
+                                  child: Row(children: [
+                                    Container(
+                                      margin: EdgeInsets.only(right: 6),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 5),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          color: Theme.of(context).focusColor),
+                                      child: Text(
+                                        'Hello',
+                                        style: TextStyle(
+                                            color: Theme.of(context).hintColor),
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(right: 6),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 5),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
-                                        color: Theme.of(context).focusColor),
-                                    child: Text(
-                                      'World',
-                                      style: TextStyle(
-                                          color: Theme.of(context).hintColor),
+                                    Container(
+                                      margin: EdgeInsets.only(right: 6),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 5),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          color: Theme.of(context).focusColor),
+                                      child: Text(
+                                        'World',
+                                        style: TextStyle(
+                                            color: Theme.of(context).hintColor),
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(right: 6),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 5),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
-                                        color: Theme.of(context).focusColor),
-                                    child: Text(
-                                      '!!!!!!!!!!!',
-                                      style: TextStyle(
-                                          color: Theme.of(context).hintColor),
+                                    Container(
+                                      margin: EdgeInsets.only(right: 6),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 5),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          color: Theme.of(context).focusColor),
+                                      child: Text(
+                                        '!!!!!!!!!!!',
+                                        style: TextStyle(
+                                            color: Theme.of(context).hintColor),
+                                      ),
                                     ),
-                                  ),
-                                ]),
+                                  ]),
+                                ),
                                 Container(
                                   child: _isOpenAbilityModal
                                       ? Positioned(
@@ -160,26 +166,119 @@ class _PreviewRegisterOgpDataState
                                           width: abilityWidth,
                                           height: 250,
                                           child: Container(
-                                            width: 150,
-                                            height: 150,
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.black26,
-                                                    offset: Offset(10, 10),
-                                                    blurRadius: 10.0,
-                                                    spreadRadius: 1.0,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      color: Colors.black26,
+                                                      offset: Offset(10, 10),
+                                                      blurRadius: 10.0,
+                                                      spreadRadius: 1.0,
+                                                    ),
+                                                  ]),
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    padding: EdgeInsets.all(6),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[100],
+                                                    ),
+                                                    child: Row(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    right: 6),
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    horizontal:
+                                                                        10,
+                                                                    vertical:
+                                                                        5),
+                                                            decoration: BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            30),
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .focusColor),
+                                                            child: Text(
+                                                              'Hello',
+                                                              style: TextStyle(
+                                                                  color: Theme.of(
+                                                                          context)
+                                                                      .hintColor),
+                                                            ),
+                                                          ),
+                                                          Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    right: 6),
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    horizontal:
+                                                                        10,
+                                                                    vertical:
+                                                                        5),
+                                                            decoration: BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            30),
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .focusColor),
+                                                            child: Text(
+                                                              'World',
+                                                              style: TextStyle(
+                                                                  color: Theme.of(
+                                                                          context)
+                                                                      .hintColor),
+                                                            ),
+                                                          ),
+                                                          Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    right: 6),
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    horizontal:
+                                                                        10,
+                                                                    vertical:
+                                                                        5),
+                                                            decoration: BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            30),
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .focusColor),
+                                                            child: Text(
+                                                              '!!!!!!!!!!!',
+                                                              style: TextStyle(
+                                                                  color: Theme.of(
+                                                                          context)
+                                                                      .hintColor),
+                                                            ),
+                                                          ),
+                                                        ]),
                                                   ),
-                                                ]),
-                                            child: const Text(
-                                              '赤（真ん中）',
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 20),
-                                            ),
-                                          ),
-                                        )
+                                                  Padding(
+                                                      padding:
+                                                          EdgeInsets.all(2),
+                                                      child: Align(
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        child: Text(
+                                                            'オプションを選択するか、新しく作成する'),
+                                                      ))
+                                                ],
+                                              )))
                                       : null,
                                 )
                               ],
