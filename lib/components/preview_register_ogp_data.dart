@@ -1,3 +1,4 @@
+import 'package:browser_tab_management_app/components/edi_ability_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -160,125 +161,8 @@ class _PreviewRegisterOgpDataState
                                 ),
                                 Container(
                                   child: _isOpenAbilityModal
-                                      ? Positioned(
-                                          top: 0,
-                                          left: 0,
-                                          width: abilityWidth,
-                                          height: 250,
-                                          child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      color: Colors.black26,
-                                                      offset: Offset(10, 10),
-                                                      blurRadius: 10.0,
-                                                      spreadRadius: 1.0,
-                                                    ),
-                                                  ]),
-                                              child: Column(
-                                                children: [
-                                                  Container(
-                                                    padding: EdgeInsets.all(6),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.grey[100],
-                                                    ),
-                                                    child: Row(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Container(
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    right: 6),
-                                                            padding: EdgeInsets
-                                                                .symmetric(
-                                                                    horizontal:
-                                                                        10,
-                                                                    vertical:
-                                                                        5),
-                                                            decoration: BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            30),
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .focusColor),
-                                                            child: Text(
-                                                              'Hello',
-                                                              style: TextStyle(
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .hintColor),
-                                                            ),
-                                                          ),
-                                                          Container(
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    right: 6),
-                                                            padding: EdgeInsets
-                                                                .symmetric(
-                                                                    horizontal:
-                                                                        10,
-                                                                    vertical:
-                                                                        5),
-                                                            decoration: BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            30),
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .focusColor),
-                                                            child: Text(
-                                                              'World',
-                                                              style: TextStyle(
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .hintColor),
-                                                            ),
-                                                          ),
-                                                          Container(
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    right: 6),
-                                                            padding: EdgeInsets
-                                                                .symmetric(
-                                                                    horizontal:
-                                                                        10,
-                                                                    vertical:
-                                                                        5),
-                                                            decoration: BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            30),
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .focusColor),
-                                                            child: Text(
-                                                              '!!!!!!!!!!!',
-                                                              style: TextStyle(
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .hintColor),
-                                                            ),
-                                                          ),
-                                                        ]),
-                                                  ),
-                                                  Padding(
-                                                      padding:
-                                                          EdgeInsets.all(2),
-                                                      child: Align(
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        child: Text(
-                                                            'オプションを選択するか、新しく作成する'),
-                                                      ))
-                                                ],
-                                              )))
+                                      ? EditAbilityModal(
+                                          abilityWidth: abilityWidth)
                                       : null,
                                 )
                               ],
