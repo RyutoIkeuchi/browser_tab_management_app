@@ -33,18 +33,28 @@ class EditAbilityModal extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: DUMMY_ABILITY_LIST
                           .map((e) => Container(
-                                margin: const EdgeInsets.only(right: 6),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 5),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: Theme.of(context).focusColor),
-                                child: Text(
-                                  e,
-                                  style: TextStyle(
-                                      color: Theme.of(context).hintColor),
-                                ),
-                              ))
+                              margin: const EdgeInsets.only(right: 6),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: Theme.of(context).focusColor),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    e,
+                                    style: TextStyle(
+                                        color: Theme.of(context).hintColor),
+                                  ),
+                                  IconButton(
+                                      padding: EdgeInsets.zero,
+                                      constraints: const BoxConstraints(),
+                                      color: Theme.of(context).hintColor,
+                                      iconSize: 16,
+                                      onPressed: () {},
+                                      icon: const Icon(Icons.close))
+                                ],
+                              )))
                           .toList()),
                 ),
                 const Padding(
