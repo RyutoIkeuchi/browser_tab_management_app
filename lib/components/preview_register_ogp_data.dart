@@ -1,10 +1,10 @@
-import 'package:browser_tab_management_app/components/edi_ability_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../pages/register_page.dart';
 import '../provider/ogp_data.dart';
+import 'edit_ability_modal.dart';
 
 class PreviewRegisterOgpData extends ConsumerStatefulWidget {
   const PreviewRegisterOgpData({Key? key}) : super(key: key);
