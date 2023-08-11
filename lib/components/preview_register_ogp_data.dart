@@ -19,6 +19,7 @@ class _PreviewRegisterOgpDataState
 
   bool _isOpenAbilityModal = false;
   double abilityWidth = 0;
+  final List<String> DUMMY_ABILITY_LIST = ["Hello", "World", "!!!!!!!!!"];
 
   @override
   void initState() {
@@ -114,50 +115,29 @@ class _PreviewRegisterOgpDataState
                               children: [
                                 Padding(
                                   padding: EdgeInsets.all(6),
-                                  child: Row(children: [
-                                    Container(
-                                      margin: EdgeInsets.only(right: 6),
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 5),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(30),
-                                          color: Theme.of(context).focusColor),
-                                      child: Text(
-                                        'Hello',
-                                        style: TextStyle(
-                                            color: Theme.of(context).hintColor),
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.only(right: 6),
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 5),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(30),
-                                          color: Theme.of(context).focusColor),
-                                      child: Text(
-                                        'World',
-                                        style: TextStyle(
-                                            color: Theme.of(context).hintColor),
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.only(right: 6),
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 5),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(30),
-                                          color: Theme.of(context).focusColor),
-                                      child: Text(
-                                        '!!!!!!!!!!!',
-                                        style: TextStyle(
-                                            color: Theme.of(context).hintColor),
-                                      ),
-                                    ),
-                                  ]),
+                                  child: Row(
+                                      children: DUMMY_ABILITY_LIST
+                                          .map((e) => Container(
+                                                margin: const EdgeInsets.only(
+                                                    right: 6),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 5),
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30),
+                                                    color: Theme.of(context)
+                                                        .focusColor),
+                                                child: Text(
+                                                  e,
+                                                  style: TextStyle(
+                                                      color: Theme.of(context)
+                                                          .hintColor),
+                                                ),
+                                              ))
+                                          .toList()),
                                 ),
                                 Container(
                                   child: _isOpenAbilityModal
