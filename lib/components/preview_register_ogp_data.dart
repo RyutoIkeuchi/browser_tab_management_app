@@ -1,3 +1,4 @@
+import 'package:browser_tab_management_app/provider/ability_list_position.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,6 +35,7 @@ class _PreviewRegisterOgpDataState
   @override
   Widget build(BuildContext context) {
     final AsyncValue<dynamic> ogpDataFromInputUrl = ref.watch(ogpDataProvider);
+    final abilityListPosition = ref.watch(abilityListPositionProvider);
 
     return ogpDataFromInputUrl.when(
         loading: () => const CircularProgressIndicator(),
@@ -100,52 +102,38 @@ class _PreviewRegisterOgpDataState
                           ),
                         ),
                         OutlinedButton(
+                          key: _key,
                           onPressed: () {
-                            setState(() {
-                              _isOpenAbilityModal = !_isOpenAbilityModal;
-                            });
+                            ref
+                                .read(abilityListPositionProvider.notifier)
+                                .toggleOpenModalStatus();
                           },
                           style: ButtonStyle(
                               side: MaterialStateProperty.all<BorderSide>(
                                   BorderSide.none)),
                           child: Container(
-                            child: Stack(
-                              key: _key,
-                              clipBehavior: Clip.none,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(6),
-                                  child: Row(
-                                      children: DUMMY_ABILITY_LIST
-                                          .map((e) => Container(
-                                                margin: const EdgeInsets.only(
-                                                    right: 6),
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10,
-                                                        vertical: 5),
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            30),
-                                                    color: Theme.of(context)
-                                                        .focusColor),
-                                                child: Text(
-                                                  e,
-                                                  style: TextStyle(
-                                                      color: Theme.of(context)
-                                                          .hintColor),
-                                                ),
-                                              ))
-                                          .toList()),
-                                ),
-                                Container(
-                                  child: _isOpenAbilityModal
-                                      ? EditAbilityModal(
-                                          abilityWidth: abilityWidth)
-                                      : null,
-                                )
-                              ],
+                            child: Padding(
+                              padding: EdgeInsets.all(6),
+                              child: Row(
+                                  children: DUMMY_ABILITY_LIST
+                                      .map((e) => Container(
+                                            margin:
+                                                const EdgeInsets.only(right: 6),
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 10, vertical: 5),
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(30),
+                                                color: Theme.of(context)
+                                                    .focusColor),
+                                            child: Text(
+                                              e,
+                                              style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .hintColor),
+                                            ),
+                                          ))
+                                      .toList()),
                             ),
                           ),
                         ),

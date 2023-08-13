@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
 class EditAbilityModal extends StatelessWidget {
-  EditAbilityModal({super.key, required this.abilityWidth});
-
-  final double abilityWidth;
   final List<String> DUMMY_ABILITY_LIST = ["Hello", "World", "!!!!!!!!!"];
 
   @override
@@ -11,7 +8,7 @@ class EditAbilityModal extends StatelessWidget {
     return Positioned(
         top: 0,
         left: 0,
-        width: abilityWidth,
+        width: 500,
         height: 250,
         child: Container(
             decoration: const BoxDecoration(color: Colors.white, boxShadow: [
