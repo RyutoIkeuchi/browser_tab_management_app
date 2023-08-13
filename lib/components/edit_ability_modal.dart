@@ -58,11 +58,14 @@ class EditAbilityModal extends StatelessWidget {
                           .toList()),
                 ),
                 const Padding(
-                    padding: EdgeInsets.all(2),
+                    padding: EdgeInsets.all(8),
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text('オプションを選択するか、新しく作成する'),
-                    ))
+                      child: Text(
+                        'オプションを選択するか、新しく作成する',
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    )),
               ],
             )));
   }
