@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class EditAbilityModal extends StatelessWidget {
+import '../provider/ability_list_position.dart';
+
+class EditAbilityModal extends ConsumerWidget {
   final List<String> DUMMY_ABILITY_LIST = ["Hello", "World", "!!!!!!!!!"];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final abilityListPosition = ref.watch(abilityListPositionProvider);
+
     return Positioned(
-        top: 0,
-        left: 0,
-        width: 500,
+        top: abilityListPosition["top"],
+        left: abilityListPosition["left"],
+        width: abilityListPosition["width"],
         height: 250,
         child: Container(
             decoration: const BoxDecoration(color: Colors.white, boxShadow: [

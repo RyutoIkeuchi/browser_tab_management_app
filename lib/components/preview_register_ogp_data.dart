@@ -1,10 +1,11 @@
-import 'package:browser_tab_management_app/provider/ability_list_position.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../pages/register_page.dart';
+import '../provider/ability_list_position.dart';
 import '../provider/ogp_data.dart';
+import '../provider/widget_global_key.dart';
 import 'edit_ability_modal.dart';
 
 class PreviewRegisterOgpData extends ConsumerStatefulWidget {
@@ -24,16 +25,20 @@ class _PreviewRegisterOgpDataState
 
   @override
   void initState() {
-    SchedulerBinding.instance!.addPostFrameCallback((_) {
-      setState(() {
-        abilityWidth = _key.currentContext!.size!.width;
-      });
-    });
+    // ref.read(abilityListPositionProvider.notifier).initPositionData(ref);
+    // SchedulerBinding.instance!.addPostFrameCallback((_) {
+    //   RenderBox box = _key.currentContext!.findRenderObject() as RenderBox;
+    //   print(box.localToGlobal(Offset.zero));
+    //   setState(() {
+    //     abilityWidth = _key.currentContext!.size!.width;
+    //   });
+    // });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey abilityKey = ref.watch(abilityWidgetGlobalKeyProvider);
     final AsyncValue<dynamic> ogpDataFromInputUrl = ref.watch(ogpDataProvider);
     final abilityListPosition = ref.watch(abilityListPositionProvider);
 
@@ -102,11 +107,11 @@ class _PreviewRegisterOgpDataState
                           ),
                         ),
                         OutlinedButton(
-                          key: _key,
+                          key: abilityKey,
                           onPressed: () {
                             ref
                                 .read(abilityListPositionProvider.notifier)
-                                .toggleOpenModalStatus();
+                                .toggleOpenModalStatus(ref);
                           },
                           style: ButtonStyle(
                               side: MaterialStateProperty.all<BorderSide>(
