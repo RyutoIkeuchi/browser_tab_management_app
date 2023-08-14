@@ -24,21 +24,26 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class BaseContainer extends StatefulWidget {
+class BaseContainer extends ConsumerStatefulWidget {
   const BaseContainer({super.key});
 
   @override
-  State<BaseContainer> createState() => _BaseContainerState();
+  _BaseContainerState createState() => _BaseContainerState();
 }
 
-class _BaseContainerState extends State<BaseContainer> {
+class _BaseContainerState extends ConsumerState<BaseContainer> {
   int selectedIndex = 0;
   bool _isExtended = true;
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey appBarKey = ref.watch(appBarGlobalKeyProvider);
+    final GlobalKey navigationRailKey =
+        ref.watch(navigationRailGlobalKeyProvider);
+
     return Scaffold(
       appBar: AppBar(
+        key: appBarKey,
         centerTitle: false,
         title: const Text("ブラウザ管理アプリ"),
         elevation: 10,
@@ -59,6 +64,7 @@ class _BaseContainerState extends State<BaseContainer> {
       body: Row(
         children: [
           NavigationRail(
+            key: navigationRailKey,
             extended: _isExtended,
             leading: InkWell(
               child: const Icon(Icons.menu),
