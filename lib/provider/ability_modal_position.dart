@@ -1,7 +1,8 @@
-import 'package:browser_tab_management_app/provider/widget_global_key.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'widget_global_key.dart';
 
 final abilityModalPositionProvider =
     StateNotifierProvider<AbilityModalPositionNotifier, Map<String, dynamic>>(

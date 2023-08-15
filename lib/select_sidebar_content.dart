@@ -1,8 +1,9 @@
-import 'package:browser_tab_management_app/pages/chart_page.dart';
-import 'package:browser_tab_management_app/pages/dashboard_page.dart';
-import 'package:browser_tab_management_app/pages/register_page.dart';
-import 'package:browser_tab_management_app/pages/setting_page.dart';
 import 'package:flutter/material.dart';
+
+import 'pages/chart_page.dart';
+import 'pages/dashboard_page.dart';
+import 'pages/register_page.dart';
+import 'pages/setting_page.dart';
 
 class SelectSidebarContent extends StatelessWidget {
   SelectSidebarContent({super.key, required this.selectedIndex});
