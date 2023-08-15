@@ -31,6 +31,11 @@ class AbilityListPositionNotifier extends StateNotifier<Map<String, dynamic>> {
     };
     state = updateState;
   }
+
+  void closeModal() {
+    final updateState = {...state, "is_open_modal": false};
+    state = updateState;
+  }
 }
 
 Map<String, dynamic> INITIAL_POSITION_DATA = {

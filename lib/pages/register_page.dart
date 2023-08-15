@@ -15,25 +15,30 @@ class RegisterPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final abilityListPosition = ref.watch(abilityListPositionProvider);
     return Expanded(
-      child: ColoredBox(
-          color: Theme.of(context).highlightColor,
-          child: Stack(clipBehavior: Clip.none, children: [
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(children: [
-                const InputRegisterUrlForm(),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 50),
-                  child: const PreviewRegisterOgpData(),
-                ),
-              ]),
-            ),
-            Container(
-              child: abilityListPosition["is_open_modal"]
-                  ? EditAbilityModal()
-                  : null,
-            )
-          ])),
-    );
+        child: Stack(
+      clipBehavior: Clip.none,
+      children: [
+        GestureDetector(
+            onTap: () =>
+                ref.read(abilityListPositionProvider.notifier).closeModal(),
+            child: ColoredBox(
+              color: Theme.of(context).highlightColor,
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                child: Column(children: [
+                  const InputRegisterUrlForm(),
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 50),
+                    child: const PreviewRegisterOgpData(),
+                  ),
+                ]),
+              ),
+            )),
+        Container(
+          child:
+              abilityListPosition["is_open_modal"] ? EditAbilityModal() : null,
+        )
+      ],
+    ));
   }
 }
