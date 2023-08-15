@@ -11,7 +11,7 @@ final abilityModalPositionProvider =
 class AbilityModalPositionNotifier extends StateNotifier<Map<String, dynamic>> {
   AbilityModalPositionNotifier() : super(INITIAL_POSITION_DATA);
 
-  void toggleOpenModalStatus(ref) {
+  void openModal(ref) {
     final appBarGlobalKey = ref.watch(appBarGlobalKeyProvider);
     RenderBox appBarBox =
         appBarGlobalKey.currentContext!.findRenderObject() as RenderBox;
@@ -28,7 +28,7 @@ class AbilityModalPositionNotifier extends StateNotifier<Map<String, dynamic>> {
       "top": position.dy - appBarBox.size.height,
       "left": position.dx - navigationBox.size.width,
       "width": box.size.width,
-      "is_open_modal": !state["is_open_modal"]
+      "is_open_modal": true
     };
     state = updateState;
   }

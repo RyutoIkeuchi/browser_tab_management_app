@@ -111,7 +111,7 @@ class _PreviewRegisterOgpDataState
                           onPressed: () {
                             ref
                                 .read(abilityModalPositionProvider.notifier)
-                                .toggleOpenModalStatus(ref);
+                                .openModal(ref);
                           },
                           style: ButtonStyle(
                               side: MaterialStateProperty.all<BorderSide>(
