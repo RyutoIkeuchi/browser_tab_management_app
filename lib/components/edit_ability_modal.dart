@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../provider/ability_list_position.dart';
+import '../provider/ability_modal_position.dart';
 
 class EditAbilityModal extends ConsumerWidget {
   final List<String> DUMMY_ABILITY_LIST = ["Hello", "World", "!!!!!!!!!"];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final abilityListPosition = ref.watch(abilityListPositionProvider);
+    final abilityListPosition = ref.watch(abilityModalPositionProvider);
 
     return Positioned(
         top: abilityListPosition["top"],

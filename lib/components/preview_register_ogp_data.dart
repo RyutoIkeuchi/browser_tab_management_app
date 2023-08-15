@@ -3,7 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../pages/register_page.dart';
-import '../provider/ability_list_position.dart';
+import '../provider/ability_modal_position.dart';
 import '../provider/ogp_data.dart';
 import '../provider/widget_global_key.dart';
 import 'edit_ability_modal.dart';
@@ -40,7 +40,7 @@ class _PreviewRegisterOgpDataState
   Widget build(BuildContext context) {
     final GlobalKey abilityKey = ref.watch(abilityWidgetGlobalKeyProvider);
     final AsyncValue<dynamic> ogpDataFromInputUrl = ref.watch(ogpDataProvider);
-    final abilityListPosition = ref.watch(abilityListPositionProvider);
+    final abilityListPosition = ref.watch(abilityModalPositionProvider);
 
     return ogpDataFromInputUrl.when(
         loading: () => const CircularProgressIndicator(),
@@ -110,7 +110,7 @@ class _PreviewRegisterOgpDataState
                           key: abilityKey,
                           onPressed: () {
                             ref
-                                .read(abilityListPositionProvider.notifier)
+                                .read(abilityModalPositionProvider.notifier)
                                 .toggleOpenModalStatus(ref);
                           },
                           style: ButtonStyle(

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final abilityListPositionProvider =
-    StateNotifierProvider<AbilityListPositionNotifier, Map<String, dynamic>>(
-        (ref) => AbilityListPositionNotifier());
+final abilityModalPositionProvider =
+    StateNotifierProvider<AbilityModalPositionNotifier, Map<String, dynamic>>(
+        (ref) => AbilityModalPositionNotifier());
 
-class AbilityListPositionNotifier extends StateNotifier<Map<String, dynamic>> {
-  AbilityListPositionNotifier() : super(INITIAL_POSITION_DATA);
+class AbilityModalPositionNotifier extends StateNotifier<Map<String, dynamic>> {
+  AbilityModalPositionNotifier() : super(INITIAL_POSITION_DATA);
 
   void toggleOpenModalStatus(ref) {
     final appBarGlobalKey = ref.watch(appBarGlobalKeyProvider);
