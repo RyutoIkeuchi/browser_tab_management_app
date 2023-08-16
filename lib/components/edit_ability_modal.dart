@@ -5,6 +5,12 @@ import '../provider/ability_modal_position.dart';
 
 class EditAbilityModal extends ConsumerWidget {
   final List<String> DUMMY_ABILITY_LIST = ["Hello", "World", "!!!!!!!!!"];
+  final List<String> DUMMY_ABILITY_SUGGEST_LIST = [
+    "Flutter",
+    "React",
+    "HTML",
+    "Python"
+  ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -68,6 +74,31 @@ class EditAbilityModal extends ConsumerWidget {
                         style: TextStyle(fontSize: 12),
                       ),
                     )),
+                Column(
+                  children: DUMMY_ABILITY_SUGGEST_LIST.map((d) {
+                    return TextButton(
+                      onPressed: () {
+                        print(d);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.only(
+                            top: 4, bottom: 4, left: 8, right: 8),
+                        child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(right: 10),
+                                child: const Icon(
+                                  Icons.subject,
+                                  size: 16,
+                                ),
+                              ),
+                              Text(d),
+                            ]),
+                      ),
+                    );
+                  }).toList(),
+                )
               ],
             )));
   }
