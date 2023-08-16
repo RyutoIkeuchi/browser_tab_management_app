@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../pages/register_page.dart';
 import '../provider/ability_modal_position.dart';
 import '../provider/ogp_data.dart';
 import '../provider/widget_global_key.dart';
-import 'edit_ability_modal.dart';
 
 class PreviewRegisterOgpData extends ConsumerStatefulWidget {
   const PreviewRegisterOgpData({Key? key}) : super(key: key);
@@ -17,30 +14,12 @@ class PreviewRegisterOgpData extends ConsumerStatefulWidget {
 
 class _PreviewRegisterOgpDataState
     extends ConsumerState<PreviewRegisterOgpData> {
-  final _key = GlobalKey();
-
-  bool _isOpenAbilityModal = false;
-  double abilityWidth = 0;
   final List<String> DUMMY_ABILITY_LIST = ["Hello", "World", "!!!!!!!!!"];
-
-  @override
-  void initState() {
-    // ref.read(abilityListPositionProvider.notifier).initPositionData(ref);
-    // SchedulerBinding.instance!.addPostFrameCallback((_) {
-    //   RenderBox box = _key.currentContext!.findRenderObject() as RenderBox;
-    //   print(box.localToGlobal(Offset.zero));
-    //   setState(() {
-    //     abilityWidth = _key.currentContext!.size!.width;
-    //   });
-    // });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     final GlobalKey abilityKey = ref.watch(abilityWidgetGlobalKeyProvider);
     final AsyncValue<dynamic> ogpDataFromInputUrl = ref.watch(ogpDataProvider);
-    final abilityListPosition = ref.watch(abilityModalPositionProvider);
 
     return ogpDataFromInputUrl.when(
         loading: () => const CircularProgressIndicator(),
@@ -79,14 +58,14 @@ class _PreviewRegisterOgpDataState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          margin: EdgeInsets.only(bottom: 6),
+                          margin: const EdgeInsets.only(bottom: 6),
                           child: Text(
                             data?.title,
-                            style: TextStyle(fontSize: 24),
+                            style: const TextStyle(fontSize: 24),
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(bottom: 6),
+                          margin: const EdgeInsets.only(bottom: 6),
                           child: Text(
                             data?.description,
                             style: TextStyle(
@@ -100,8 +79,8 @@ class _PreviewRegisterOgpDataState
                           color: Theme.of(context).shadowColor,
                         ),
                         Container(
-                          margin: EdgeInsets.only(bottom: 10),
-                          child: Text(
+                          margin: const EdgeInsets.only(bottom: 10),
+                          child: const Text(
                             'アビリティ',
                             style: TextStyle(fontSize: 16),
                           ),
@@ -116,30 +95,28 @@ class _PreviewRegisterOgpDataState
                           style: ButtonStyle(
                               side: MaterialStateProperty.all<BorderSide>(
                                   BorderSide.none)),
-                          child: Container(
-                            child: Padding(
-                              padding: EdgeInsets.all(6),
-                              child: Row(
-                                  children: DUMMY_ABILITY_LIST
-                                      .map((e) => Container(
-                                            margin:
-                                                const EdgeInsets.only(right: 6),
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 5),
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(30),
+                          child: Padding(
+                            padding: const EdgeInsets.all(6),
+                            child: Row(
+                                children: DUMMY_ABILITY_LIST
+                                    .map((e) => Container(
+                                          margin:
+                                              const EdgeInsets.only(right: 6),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 5),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                              color:
+                                                  Theme.of(context).focusColor),
+                                          child: Text(
+                                            e,
+                                            style: TextStyle(
                                                 color: Theme.of(context)
-                                                    .focusColor),
-                                            child: Text(
-                                              e,
-                                              style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .hintColor),
-                                            ),
-                                          ))
-                                      .toList()),
-                            ),
+                                                    .hintColor),
+                                          ),
+                                        ))
+                                    .toList()),
                           ),
                         ),
                       ]),
