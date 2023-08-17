@@ -1,16 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:metadata_fetch/metadata_fetch.dart';
 
-final registrationURLDataProvider = StateNotifierProvider<
-    RegistrationURLDataNotifier,
-    AsyncValue<Map<String, dynamic>>>((ref) => RegistrationURLDataNotifier());
+final registrationURLDataProvider =
+    StateNotifierProvider<RegistrationURLDataNotifier, Map<String, dynamic>>(
+        (ref) => RegistrationURLDataNotifier());
 
-class RegistrationURLDataNotifier
-    extends StateNotifier<AsyncValue<Map<String, dynamic>>> {
-  RegistrationURLDataNotifier() : super(AsyncData(INITIAL_URL_DATA));
+class RegistrationURLDataNotifier extends StateNotifier<Map<String, dynamic>> {
+  RegistrationURLDataNotifier() : super(INITIAL_URL_DATA);
 
   Future<void> getOgpData(inputUrl) async {
-    state = const AsyncLoading();
     final Metadata? response = await MetadataFetch.extract(inputUrl);
     final Map<String, dynamic> newStateFromOgpData = {
       "title": response?.title,
@@ -22,7 +20,21 @@ class RegistrationURLDataNotifier
         {"id": 3, "name": "!!!!!!!!!"}
       ]
     };
-    state = AsyncData(newStateFromOgpData);
+    state = newStateFromOgpData;
+  }
+
+  void addAbility(newAbility) {
+    final List<Map<String, dynamic>> updateAbilityList = [
+      ...state["ability_list"],
+      newAbility
+    ];
+    state = {...state, "ability_list": updateAbilityList};
+  }
+
+  void removeTargetAbility(abilityId) {
+    final List<Map<String, dynamic>> updateAbilityList =
+        state["ability_list"].where((item) => item["id"] != abilityId).toList();
+    state = {...state, "ability_list": updateAbilityList};
   }
 }
 

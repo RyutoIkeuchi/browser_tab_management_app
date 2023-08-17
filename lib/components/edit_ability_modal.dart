@@ -34,44 +34,42 @@ class EditAbilityModal extends ConsumerWidget {
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(6),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[100],
-                  ),
-                  child: registrationURLData.when(
-                      loading: () => const CircularProgressIndicator(),
-                      error: (stack, err) => const Center(child: Text('エラーです')),
-                      data: (data) {
-                        return Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: data["ability_list"]
-                                .map<Widget>((e) => Container(
-                                    margin: const EdgeInsets.only(right: 6),
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 5),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
-                                        color: Theme.of(context).focusColor),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          e["name"],
-                                          style: TextStyle(
-                                              color:
-                                                  Theme.of(context).hintColor),
-                                        ),
-                                        IconButton(
-                                            padding: EdgeInsets.zero,
-                                            constraints: const BoxConstraints(),
-                                            color: Theme.of(context).hintColor,
-                                            iconSize: 16,
-                                            onPressed: () {},
-                                            icon: const Icon(Icons.close))
-                                      ],
-                                    )))
-                                .toList());
-                      }),
-                ),
+                    padding: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[100],
+                    ),
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: registrationURLData["ability_list"]
+                            .map<Widget>((e) => Container(
+                                margin: const EdgeInsets.only(right: 6),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                    color: Theme.of(context).focusColor),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      e["name"],
+                                      style: TextStyle(
+                                          color: Theme.of(context).hintColor),
+                                    ),
+                                    IconButton(
+                                        padding: EdgeInsets.zero,
+                                        constraints: const BoxConstraints(),
+                                        color: Theme.of(context).hintColor,
+                                        iconSize: 16,
+                                        onPressed: () {
+                                          ref
+                                              .read(registrationURLDataProvider
+                                                  .notifier)
+                                              .removeTargetAbility(e['id']);
+                                        },
+                                        icon: const Icon(Icons.close))
+                                  ],
+                                )))
+                            .toList())),
                 const Padding(
                     padding: EdgeInsets.all(8),
                     child: Align(
@@ -85,7 +83,9 @@ class EditAbilityModal extends ConsumerWidget {
                   children: DUMMY_ABILITY_SUGGEST_LIST.map((d) {
                     return TextButton(
                       onPressed: () {
-                        print(d);
+                        ref
+                            .read(registrationURLDataProvider.notifier)
+                            .addAbility(d);
                       },
                       child: Container(
                         padding: const EdgeInsets.only(
