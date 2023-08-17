@@ -14,14 +14,14 @@ class PreviewRegisterOgpData extends ConsumerStatefulWidget {
 
 class _PreviewRegisterOgpDataState
     extends ConsumerState<PreviewRegisterOgpData> {
-  final List<String> DUMMY_ABILITY_LIST = ["Hello", "World", "!!!!!!!!!"];
 
   @override
   Widget build(BuildContext context) {
     final GlobalKey abilityKey = ref.watch(abilityWidgetGlobalKeyProvider);
-    final AsyncValue<dynamic> ogpDataFromInputUrl = ref.watch(ogpDataProvider);
+    final AsyncValue<Map<String, dynamic>> registrationURLData =
+        ref.watch(registrationURLDataProvider);
 
-    return ogpDataFromInputUrl.when(
+    return registrationURLData.when(
         loading: () => const CircularProgressIndicator(),
         error: (stack, err) => const Center(child: Text('エラーです')),
         data: (data) {
@@ -62,8 +62,8 @@ class _PreviewRegisterOgpDataState
                     SizedBox(
                       width: double.infinity,
                       height: 250,
-                      child: data.image != ""
-                          ? Image.network(data.image, fit: BoxFit.cover)
+                      child: data["image"] != ""
+                          ? Image.network(data["image"], fit: BoxFit.cover)
                           : ColoredBox(
                               color: Theme.of(context).highlightColor,
                               child: const Center(child: Text('サムネイル')),
@@ -77,14 +77,14 @@ class _PreviewRegisterOgpDataState
                             Container(
                               margin: const EdgeInsets.only(bottom: 6),
                               child: Text(
-                                data?.title,
+                                data["title"],
                                 style: const TextStyle(fontSize: 24),
                               ),
                             ),
                             Container(
                               margin: const EdgeInsets.only(bottom: 6),
                               child: Text(
-                                data?.description,
+                                data["description"],
                                 style: TextStyle(
                                     fontSize: 14,
                                     color: Theme.of(context).disabledColor),
@@ -115,8 +115,8 @@ class _PreviewRegisterOgpDataState
                               child: Padding(
                                 padding: const EdgeInsets.all(6),
                                 child: Row(
-                                    children: DUMMY_ABILITY_LIST
-                                        .map((e) => Container(
+                                    children: data["ability_list"]
+                                        .map<Widget>((e) => Container(
                                               margin: const EdgeInsets.only(
                                                   right: 6),
                                               padding:

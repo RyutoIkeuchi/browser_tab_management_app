@@ -22,7 +22,9 @@ class _InputRegisterUrlFormState extends ConsumerState<InputRegisterUrlForm> {
 
   handleGetThumbnailFromWeb() {
     if (_formKey.currentState!.validate()) {
-      ref.read(ogpDataProvider.notifier).getOgpData(_controller.text);
+      ref
+          .read(registrationURLDataProvider.notifier)
+          .getOgpData(_controller.text);
     }
   }
 
