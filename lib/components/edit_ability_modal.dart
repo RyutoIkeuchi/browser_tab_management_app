@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../provider/ability_modal_position.dart';
+import '../provider/registration_url_data.dart';
 
 class EditAbilityModal extends ConsumerWidget {
-  final List<Map<String, dynamic>> DUMMY_ABILITY_LIST = [
-    {"id": 1, "name": "Hello"},
-    {"id": 2, "name": "World"},
-    {"id": 3, "name": "!!!!!!!!!"}
-  ];
   final List<Map<String, dynamic>> DUMMY_ABILITY_SUGGEST_LIST = [
     {"id": 4, "name": "Flutter"},
     {"id": 5, "name": "React"},
@@ -19,6 +15,7 @@ class EditAbilityModal extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final abilityListPosition = ref.watch(abilityModalPositionProvider);
+    final registrationURLData = ref.watch(registrationURLDataProvider);
 
     return Positioned(
         top: abilityListPosition["top"],
@@ -41,33 +38,39 @@ class EditAbilityModal extends ConsumerWidget {
                   decoration: BoxDecoration(
                     color: Colors.grey[100],
                   ),
-                  child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: DUMMY_ABILITY_LIST
-                          .map((e) => Container(
-                              margin: const EdgeInsets.only(right: 6),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: Theme.of(context).focusColor),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    e["name"],
-                                    style: TextStyle(
-                                        color: Theme.of(context).hintColor),
-                                  ),
-                                  IconButton(
-                                      padding: EdgeInsets.zero,
-                                      constraints: const BoxConstraints(),
-                                      color: Theme.of(context).hintColor,
-                                      iconSize: 16,
-                                      onPressed: () {},
-                                      icon: const Icon(Icons.close))
-                                ],
-                              )))
-                          .toList()),
+                  child: registrationURLData.when(
+                      loading: () => const CircularProgressIndicator(),
+                      error: (stack, err) => const Center(child: Text('エラーです')),
+                      data: (data) {
+                        return Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: data["ability_list"]
+                                .map<Widget>((e) => Container(
+                                    margin: const EdgeInsets.only(right: 6),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 5),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        color: Theme.of(context).focusColor),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          e["name"],
+                                          style: TextStyle(
+                                              color:
+                                                  Theme.of(context).hintColor),
+                                        ),
+                                        IconButton(
+                                            padding: EdgeInsets.zero,
+                                            constraints: const BoxConstraints(),
+                                            color: Theme.of(context).hintColor,
+                                            iconSize: 16,
+                                            onPressed: () {},
+                                            icon: const Icon(Icons.close))
+                                      ],
+                                    )))
+                                .toList());
+                      }),
                 ),
                 const Padding(
                     padding: EdgeInsets.all(8),
