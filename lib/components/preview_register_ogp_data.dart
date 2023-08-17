@@ -14,7 +14,6 @@ class PreviewRegisterOgpData extends ConsumerStatefulWidget {
 
 class _PreviewRegisterOgpDataState
     extends ConsumerState<PreviewRegisterOgpData> {
-
   @override
   Widget build(BuildContext context) {
     final GlobalKey abilityKey = ref.watch(abilityWidgetGlobalKeyProvider);
@@ -129,7 +128,7 @@ class _PreviewRegisterOgpDataState
                                                   color: Theme.of(context)
                                                       .focusColor),
                                               child: Text(
-                                                e,
+                                                e["name"],
                                                 style: TextStyle(
                                                     color: Theme.of(context)
                                                         .hintColor),

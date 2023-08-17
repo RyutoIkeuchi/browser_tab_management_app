@@ -4,12 +4,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../provider/ability_modal_position.dart';
 
 class EditAbilityModal extends ConsumerWidget {
-  final List<String> DUMMY_ABILITY_LIST = ["Hello", "World", "!!!!!!!!!"];
-  final List<String> DUMMY_ABILITY_SUGGEST_LIST = [
-    "Flutter",
-    "React",
-    "HTML",
-    "Python"
+  final List<Map<String, dynamic>> DUMMY_ABILITY_LIST = [
+    {"id": 1, "name": "Hello"},
+    {"id": 2, "name": "World"},
+    {"id": 3, "name": "!!!!!!!!!"}
+  ];
+  final List<Map<String, dynamic>> DUMMY_ABILITY_SUGGEST_LIST = [
+    {"id": 4, "name": "Flutter"},
+    {"id": 5, "name": "React"},
+    {"id": 6, "name": "HTML"},
+    {"id": 7, "name": "Python"},
   ];
 
   @override
@@ -50,7 +54,7 @@ class EditAbilityModal extends ConsumerWidget {
                               child: Row(
                                 children: [
                                   Text(
-                                    e,
+                                    e["name"],
                                     style: TextStyle(
                                         color: Theme.of(context).hintColor),
                                   ),
@@ -93,7 +97,7 @@ class EditAbilityModal extends ConsumerWidget {
                                   size: 16,
                                 ),
                               ),
-                              Text(d),
+                              Text(d['name']),
                             ]),
                       ),
                     );
