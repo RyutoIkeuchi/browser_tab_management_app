@@ -53,9 +53,10 @@ class _PreviewRegisterOgpDataState
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            IconButton(
-                                onPressed: () {}, icon: const Icon(Icons.close)),
-                            TextButton(onPressed: () {}, child: const Text('保存する'))
+                            TextButton(
+                                onPressed: () {}, child: const Text('キャンセル')),
+                            TextButton(
+                                onPressed: () {}, child: const Text('保存する'))
                           ]),
                     ),
                     SizedBox(
