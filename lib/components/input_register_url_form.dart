@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../provider/ogp_data.dart';
+import '../provider/registration_url_data.dart';
 
 class InputRegisterUrlForm extends ConsumerStatefulWidget {
   const InputRegisterUrlForm({Key? key}) : super(key: key);

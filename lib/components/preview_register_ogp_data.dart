@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../provider/ability_modal_position.dart';
-import '../provider/ogp_data.dart';
+import '../provider/registration_url_data.dart';
 import '../provider/widget_global_key.dart';
 
 class PreviewRegisterOgpData extends ConsumerStatefulWidget {

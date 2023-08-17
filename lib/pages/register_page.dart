@@ -8,7 +8,7 @@ import '../components/edit_ability_modal.dart';
 import '../components/input_register_url_form.dart';
 import '../components/preview_register_ogp_data.dart';
 import '../provider/ability_modal_position.dart';
-import '../provider/ogp_data.dart';
+import '../provider/registration_url_data.dart';
 
 class RegisterPage extends ConsumerWidget {
   @override
