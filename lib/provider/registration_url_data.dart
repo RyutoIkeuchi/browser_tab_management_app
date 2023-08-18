@@ -14,11 +14,7 @@ class RegistrationURLDataNotifier extends StateNotifier<Map<String, dynamic>> {
       "title": response?.title,
       "description": response?.description,
       "image": response?.image,
-      "ability_list": [
-        {"id": 1, "name": "Hello"},
-        {"id": 2, "name": "World"},
-        {"id": 3, "name": "!!!!!!!!!"}
-      ]
+      "ability_list": []
     };
     state = newStateFromOgpData;
   }
@@ -42,9 +38,5 @@ final Map<String, dynamic> INITIAL_URL_DATA = {
   "title": "ここにタイトルが入ります",
   "description": "ここにブラウザの詳細情報が入ります。",
   "image": "",
-  "ability_list": [
-    {"id": 1, "name": "Hello"},
-    {"id": 2, "name": "World"},
-    {"id": 3, "name": "!!!!!!!!!"}
-  ],
+  "ability_list": [],
 };

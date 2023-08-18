@@ -103,9 +103,12 @@ class _PreviewRegisterOgpDataState
                               .openModal(ref);
                         },
                         style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.resolveWith(
+                                (states) => Colors.grey[100]),
                             side: MaterialStateProperty.all<BorderSide>(
                                 BorderSide.none)),
-                        child: Padding(
+                        child: Container(
+                          height: 38,
                           padding: const EdgeInsets.all(6),
                           child: Row(
                               children: registrationURLData["ability_list"]

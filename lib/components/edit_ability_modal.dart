@@ -1,27 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../provider/ability_list.dart';
 import '../provider/ability_modal_position.dart';
 import '../provider/registration_url_data.dart';
 
 class EditAbilityModal extends ConsumerWidget {
-  final List<Map<String, dynamic>> DUMMY_ABILITY_SUGGEST_LIST = [
-    {"id": 4, "name": "Flutter"},
-    {"id": 5, "name": "React"},
-    {"id": 6, "name": "HTML"},
-    {"id": 7, "name": "Python"},
-  ];
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final abilityListPosition = ref.watch(abilityModalPositionProvider);
     final registrationURLData = ref.watch(registrationURLDataProvider);
+    final abilityList = ref.watch(abilityListProvider);
 
     return Positioned(
         top: abilityListPosition["top"],
         left: abilityListPosition["left"],
         width: abilityListPosition["width"],
-        height: 250,
+        height: 300,
         child: Container(
             decoration: const BoxDecoration(color: Colors.white, boxShadow: [
               BoxShadow(
@@ -34,6 +29,7 @@ class EditAbilityModal extends ConsumerWidget {
             child: Column(
               children: [
                 Container(
+                    height: 38,
                     padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
                       color: Colors.grey[100],
@@ -65,6 +61,10 @@ class EditAbilityModal extends ConsumerWidget {
                                               .read(registrationURLDataProvider
                                                   .notifier)
                                               .removeTargetAbility(e['id']);
+                                          ref
+                                              .read(
+                                                  abilityListProvider.notifier)
+                                              .add(e);
                                         },
                                         icon: const Icon(Icons.close))
                                   ],
@@ -80,12 +80,13 @@ class EditAbilityModal extends ConsumerWidget {
                       ),
                     )),
                 Column(
-                  children: DUMMY_ABILITY_SUGGEST_LIST.map((d) {
+                  children: abilityList.map((d) {
                     return TextButton(
                       onPressed: () {
                         ref
                             .read(registrationURLDataProvider.notifier)
                             .addAbility(d);
+                        ref.read(abilityListProvider.notifier).remove(d["id"]);
                       },
                       child: Container(
                         padding: const EdgeInsets.only(
