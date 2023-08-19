@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../components/url_list.dart';
+
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
 
@@ -8,8 +10,8 @@ class DashboardPage extends StatelessWidget {
     return Expanded(
       child: ColoredBox(
         color: Theme.of(context).primaryColorLight,
-        child: const Center(
-          child: Text("Dashboard"),
+        child: Center(
+          child: UrlList(),
         ),
       ),
     );

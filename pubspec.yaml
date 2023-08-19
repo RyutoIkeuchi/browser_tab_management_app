@@ -38,6 +38,7 @@ dependencies:
   flex_color_scheme: ^7.0.5
   metadata_fetch: ^0.4.1
   flutter_riverpod: ^2.3.6
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:
