@@ -44,7 +44,11 @@ class _UrlListState extends State<UrlList> {
             },
             onHover: (val) {
               setState(() {
-                hoveredItemIndex = index;
+                if (val) {
+                  hoveredItemIndex = index;
+                } else {
+                  hoveredItemIndex = null;
+                }
               });
             },
             child: Stack(clipBehavior: Clip.none, children: [
