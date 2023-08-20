@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../components/url_list.dart';
+import '../widgets/url_list.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});

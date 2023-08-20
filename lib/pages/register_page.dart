@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:metadata_fetch/metadata_fetch.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../components/edit_ability_modal.dart';
-import '../components/input_register_url_form.dart';
-import '../components/preview_register_ogp_data.dart';
-import '../provider/ability_modal_position.dart';
-import '../provider/registration_url_data.dart';
+import '../widgets/edit_ability_modal.dart';
+import '../widgets/input_register_url_form.dart';
+import '../widgets/preview_register_ogp_data.dart';
+import '../providers/ability_modal_position.dart';
+import '../providers/registration_url_data.dart';
 
 class RegisterPage extends ConsumerWidget {
   @override

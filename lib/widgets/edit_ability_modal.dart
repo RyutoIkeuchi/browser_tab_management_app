@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../provider/ability_list.dart';
-import '../provider/ability_modal_position.dart';
-import '../provider/registration_url_data.dart';
+import '../providers/ability_list.dart';
+import '../providers/ability_modal_position.dart';
+import '../providers/registration_url_data.dart';
 
 class EditAbilityModal extends ConsumerWidget {
   @override

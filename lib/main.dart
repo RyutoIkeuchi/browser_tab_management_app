@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'provider/widget_global_key.dart';
+import 'providers/widget_global_key.dart';
 import 'select_sidebar_content.dart';
 
 void main() {
