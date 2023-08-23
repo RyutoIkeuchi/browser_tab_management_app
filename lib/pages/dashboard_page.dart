@@ -21,7 +21,25 @@ class _DashboardPageState extends State<DashboardPage>
     'HTML',
     'Go',
     'Rust',
-    'Power BI'
+    'Power BI',
+    'Flutter',
+    'React',
+    'TypeScript',
+    'Python',
+    'Next.js',
+    'HTML',
+    'Go',
+    'Rust',
+    'Power BI',
+    'Flutter',
+    'React',
+    'TypeScript',
+    'Python',
+    'Next.js',
+    'HTML',
+    'Go',
+    'Rust',
+    'Power BI',
   ];
 
   @override
@@ -53,6 +71,7 @@ class _DashboardPageState extends State<DashboardPage>
             height: 44,
             width: double.infinity,
             child: TabBar(
+              isScrollable: true,
               controller: _tabController,
               tabs: DUMMY_TAB_NAME_LIST.map<Widget>((d) {
                 return Tab(
