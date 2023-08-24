@@ -13,6 +13,7 @@ class _DashboardPageState extends State<DashboardPage>
   TabController? _tabController;
   int _currentIndex = 0;
   final key = GlobalKey();
+  final DUMMY_ABILITY_LIST = ["プログラミング", "インフラ（生活）", "副業", "転職", "物件"];
   final DUMMY_TAB_NAME_LIST = [
     'Flutter',
     'React',
@@ -68,7 +69,15 @@ class _DashboardPageState extends State<DashboardPage>
         color: Theme.of(context).primaryColorLight,
         child: Column(children: [
           const SizedBox(height: 40),
-          AbilityTypeCard(),
+          Container(
+            margin: EdgeInsets.only(bottom: 20),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: DUMMY_ABILITY_LIST
+                  .map<Widget>((e) => AbilityTypeCard(ability: e))
+                  .toList(),
+            ),
+          ),
           Container(
             height: 44,
             width: double.infinity,

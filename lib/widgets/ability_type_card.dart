@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
 class AbilityTypeCard extends StatelessWidget {
+  AbilityTypeCard({Key? key, required this.ability}) : super(key: key);
+
+  final String ability;
+
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(left: 20),
       width: 200,
       height: 100,
       decoration: BoxDecoration(
@@ -50,7 +55,7 @@ class AbilityTypeCard extends StatelessWidget {
                 ),
               ],
             ),
-            Text('ああああ'),
+            Text(ability),
           ]),
     );
   }
