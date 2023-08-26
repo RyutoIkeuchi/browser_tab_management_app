@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/ability_list.dart';
-import '../providers/ability_modal_position.dart';
+import '../providers/sub_property_list.dart';
 import '../providers/registration_url_data.dart';
+import '../providers/sub_property_modal_position.dart';
 
-class EditAbilityModal extends ConsumerWidget {
+class EditSubPropertyModal extends ConsumerWidget {
+  const EditSubPropertyModal({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final abilityListPosition = ref.watch(abilityModalPositionProvider);
+    final subPropertyListPosition = ref.watch(subPropertyModalPositionProvider);
     final registrationURLData = ref.watch(registrationURLDataProvider);
-    final abilityList = ref.watch(abilityListProvider);
+    final subPropertyList = ref.watch(subPropertyListProvider);
 
     return Positioned(
-        top: abilityListPosition["top"],
-        left: abilityListPosition["left"],
-        width: abilityListPosition["width"],
+        top: subPropertyListPosition["top"],
+        left: subPropertyListPosition["left"],
+        width: subPropertyListPosition["width"],
         height: 300,
         child: Container(
             decoration: const BoxDecoration(color: Colors.white, boxShadow: [
@@ -36,7 +38,7 @@ class EditAbilityModal extends ConsumerWidget {
                     ),
                     child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: registrationURLData["ability_list"]
+                        children: registrationURLData["sub_property_list"]
                             .map<Widget>((e) => Container(
                                 margin: const EdgeInsets.only(right: 6),
                                 padding: const EdgeInsets.symmetric(
@@ -60,10 +62,10 @@ class EditAbilityModal extends ConsumerWidget {
                                           ref
                                               .read(registrationURLDataProvider
                                                   .notifier)
-                                              .removeTargetAbility(e['id']);
+                                              .removeTargetSubProperty(e['id']);
                                           ref
                                               .read(
-                                                  abilityListProvider.notifier)
+                                                  subPropertyListProvider.notifier)
                                               .add(e);
                                         },
                                         icon: const Icon(Icons.close))
@@ -80,13 +82,13 @@ class EditAbilityModal extends ConsumerWidget {
                       ),
                     )),
                 Column(
-                  children: abilityList.map((d) {
+                  children: subPropertyList.map((d) {
                     return TextButton(
                       onPressed: () {
                         ref
                             .read(registrationURLDataProvider.notifier)
-                            .addAbility(d);
-                        ref.read(abilityListProvider.notifier).remove(d["id"]);
+                            .addSubProperty(d);
+                        ref.read(subPropertyListProvider.notifier).remove(d["id"]);
                       },
                       child: Container(
                         padding: const EdgeInsets.only(

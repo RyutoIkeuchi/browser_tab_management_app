@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class AbilityTypeCard extends StatelessWidget {
-  AbilityTypeCard({Key? key, required this.ability}) : super(key: key);
+class MainPropertyCard extends StatelessWidget {
+  MainPropertyCard({Key? key, required this.data}) : super(key: key);
 
-  final Map<String, dynamic> ability;
+  final Map<String, dynamic> data;
 
   final icons = Icons.airplane_ticket;
 
@@ -52,12 +52,12 @@ class AbilityTypeCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: Icon(ability["icon"]),
+                    child: Icon(data["icon"]),
                   ),
                 ),
               ],
             ),
-            Text(ability["name"]),
+            Text(data["name"]),
           ]),
     );
   }

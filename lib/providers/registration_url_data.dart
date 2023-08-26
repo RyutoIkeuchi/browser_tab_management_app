@@ -14,23 +14,25 @@ class RegistrationURLDataNotifier extends StateNotifier<Map<String, dynamic>> {
       "title": response?.title,
       "description": response?.description,
       "image": response?.image,
-      "ability_list": []
+      "sub_property_list": []
     };
     state = newStateFromOgpData;
   }
 
-  void addAbility(newAbility) {
-    final List<Map<String, dynamic>> updateAbilityList = [
-      ...state["ability_list"],
-      newAbility
+  void addSubProperty(newSubProperty) {
+    final List<Map<String, dynamic>> updateSubProperty = [
+      ...state["sub_property_list"],
+      newSubProperty
     ];
-    state = {...state, "ability_list": updateAbilityList};
+    state = {...state, "sub_property_list": updateSubProperty};
   }
 
-  void removeTargetAbility(abilityId) {
-    final List<Map<String, dynamic>> updateAbilityList =
-        state["ability_list"].where((item) => item["id"] != abilityId).toList();
-    state = {...state, "ability_list": updateAbilityList};
+  void removeTargetSubProperty(subPropertyId) {
+    final List<Map<String, dynamic>> updateSubProperty =
+        state["sub_property_list"]
+            .where((item) => item["id"] != subPropertyId)
+            .toList();
+    state = {...state, "sub_property_list": updateSubProperty};
   }
 }
 
@@ -38,5 +40,5 @@ final Map<String, dynamic> INITIAL_URL_DATA = {
   "title": "ここにタイトルが入ります",
   "description": "ここにブラウザの詳細情報が入ります。",
   "image": "",
-  "ability_list": [],
+  "sub_property_list": [],
 };

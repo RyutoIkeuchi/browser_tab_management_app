@@ -1,4 +1,4 @@
-import 'package:browser_tab_management_app/widgets/ability_type_card.dart';
+import 'package:browser_tab_management_app/widgets/main_property_card.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/url_list.dart';
@@ -13,7 +13,7 @@ class _DashboardPageState extends State<DashboardPage>
   TabController? _tabController;
   int _currentIndex = 0;
   final key = GlobalKey();
-  final List<Map<String, dynamic>> DUMMY_ABILITY_LIST = [
+  final List<Map<String, dynamic>> DUMMY_MAIN_PROPERTY_LIST = [
     {"name": "プログラミング", "icon": Icons.language},
     {"name": "インフラ（生活）", "icon": Icons.wb_incandescent},
     {"name": "副業", "icon": Icons.monetization_on},
@@ -21,7 +21,7 @@ class _DashboardPageState extends State<DashboardPage>
     {"name": "物件", "icon": Icons.home}
   ];
 
-  final DUMMY_TAB_NAME_LIST = [
+  final DUMMY_SUB_PROPERTY_LIST = [
     'Flutter',
     'React',
     'TypeScript',
@@ -55,7 +55,7 @@ class _DashboardPageState extends State<DashboardPage>
   void initState() {
     super.initState();
     _tabController =
-        TabController(vsync: this, length: DUMMY_TAB_NAME_LIST.length);
+        TabController(vsync: this, length: DUMMY_SUB_PROPERTY_LIST.length);
     _tabController!.addListener(() {
       setState(() {
         _currentIndex = _tabController!.index;
@@ -80,8 +80,8 @@ class _DashboardPageState extends State<DashboardPage>
             margin: EdgeInsets.only(bottom: 20),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: DUMMY_ABILITY_LIST
-                  .map<Widget>((e) => AbilityTypeCard(ability: e))
+              children: DUMMY_MAIN_PROPERTY_LIST
+                  .map<Widget>((e) => MainPropertyCard(data: e))
                   .toList(),
             ),
           ),
@@ -91,7 +91,7 @@ class _DashboardPageState extends State<DashboardPage>
             child: TabBar(
               isScrollable: true,
               controller: _tabController,
-              tabs: DUMMY_TAB_NAME_LIST.map<Widget>((d) {
+              tabs: DUMMY_SUB_PROPERTY_LIST.map<Widget>((d) {
                 return Tab(
                   child: Center(
                     child: Container(
@@ -114,7 +114,7 @@ class _DashboardPageState extends State<DashboardPage>
               child: TabBarView(
                 key: key,
                 controller: _tabController,
-                children: DUMMY_TAB_NAME_LIST.map<Widget>((d) {
+                children: DUMMY_SUB_PROPERTY_LIST.map<Widget>((d) {
                   return UrlList();
                 }).toList(),
               ),

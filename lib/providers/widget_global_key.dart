@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final abilityWidgetGlobalKeyProvider =
-    StateNotifierProvider<AbilityWidgetGlobalKeyNotifier, GlobalKey>(
-        (ref) => AbilityWidgetGlobalKeyNotifier());
+final subPropertyWidgetKeyProvider =
+    StateNotifierProvider<SubPropertyWidgetKeyNotifier, GlobalKey>(
+        (ref) => SubPropertyWidgetKeyNotifier());
 
-class AbilityWidgetGlobalKeyNotifier extends StateNotifier<GlobalKey> {
-  AbilityWidgetGlobalKeyNotifier() : super(GlobalKey());
+class SubPropertyWidgetKeyNotifier extends StateNotifier<GlobalKey> {
+  SubPropertyWidgetKeyNotifier() : super(GlobalKey());
 }
 
 final appBarGlobalKeyProvider =

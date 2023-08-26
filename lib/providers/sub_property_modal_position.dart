@@ -4,12 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'widget_global_key.dart';
 
-final abilityModalPositionProvider =
-    StateNotifierProvider<AbilityModalPositionNotifier, Map<String, dynamic>>(
-        (ref) => AbilityModalPositionNotifier());
+final subPropertyModalPositionProvider =
+    StateNotifierProvider<SubPropertyModalPositionNotifier, Map<String, dynamic>>(
+        (ref) => SubPropertyModalPositionNotifier());
 
-class AbilityModalPositionNotifier extends StateNotifier<Map<String, dynamic>> {
-  AbilityModalPositionNotifier() : super(INITIAL_POSITION_DATA);
+class SubPropertyModalPositionNotifier extends StateNotifier<Map<String, dynamic>> {
+  SubPropertyModalPositionNotifier() : super(INITIAL_POSITION_DATA);
 
   void openModal(ref) {
     final appBarGlobalKey = ref.watch(appBarGlobalKeyProvider);
@@ -20,9 +20,9 @@ class AbilityModalPositionNotifier extends StateNotifier<Map<String, dynamic>> {
     RenderBox navigationBox =
         navigationRailGlobalKey.currentContext!.findRenderObject() as RenderBox;
 
-    final abilityGlobalKey = ref.watch(abilityWidgetGlobalKeyProvider);
+    final subPropertyGlobalKey = ref.watch(subPropertyWidgetKeyProvider);
     RenderBox box =
-        abilityGlobalKey.currentContext!.findRenderObject() as RenderBox;
+        subPropertyGlobalKey.currentContext!.findRenderObject() as RenderBox;
     final position = box.localToGlobal(Offset.zero);
     final updateState = {
       "top": position.dy - appBarBox.size.height,

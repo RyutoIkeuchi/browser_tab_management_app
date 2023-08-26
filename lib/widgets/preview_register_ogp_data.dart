@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/ability_modal_position.dart';
+import '../providers/sub_property_modal_position.dart';
 import '../providers/registration_url_data.dart';
 import '../providers/widget_global_key.dart';
 
@@ -16,7 +16,7 @@ class _PreviewRegisterOgpDataState
     extends ConsumerState<PreviewRegisterOgpData> {
   @override
   Widget build(BuildContext context) {
-    final GlobalKey abilityKey = ref.watch(abilityWidgetGlobalKeyProvider);
+    final GlobalKey subPropertyKey = ref.watch(subPropertyWidgetKeyProvider);
     final Map<String, dynamic> registrationURLData =
         ref.watch(registrationURLDataProvider);
 
@@ -91,15 +91,15 @@ class _PreviewRegisterOgpDataState
                       Container(
                         margin: const EdgeInsets.only(bottom: 10),
                         child: const Text(
-                          'アビリティ',
+                          'プロパティ',
                           style: TextStyle(fontSize: 16),
                         ),
                       ),
                       OutlinedButton(
-                        key: abilityKey,
+                        key: subPropertyKey,
                         onPressed: () {
                           ref
-                              .read(abilityModalPositionProvider.notifier)
+                              .read(subPropertyModalPositionProvider.notifier)
                               .openModal(ref);
                         },
                         style: ButtonStyle(
@@ -111,7 +111,7 @@ class _PreviewRegisterOgpDataState
                           height: 38,
                           padding: const EdgeInsets.all(6),
                           child: Row(
-                              children: registrationURLData["ability_list"]
+                              children: registrationURLData["sub_property_list"]
                                   .map<Widget>((e) => Container(
                                         margin: const EdgeInsets.only(right: 6),
                                         padding: const EdgeInsets.symmetric(
