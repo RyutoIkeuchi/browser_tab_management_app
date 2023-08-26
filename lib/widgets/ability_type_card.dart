@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class AbilityTypeCard extends StatelessWidget {
   AbilityTypeCard({Key? key, required this.ability}) : super(key: key);
 
-  final String ability;
+  final Map<String, dynamic> ability;
+
+  final icons = Icons.airplane_ticket;
 
   @override
   Widget build(BuildContext context) {
@@ -30,15 +32,15 @@ class AbilityTypeCard extends StatelessWidget {
               clipBehavior: Clip.none,
               children: [
                 Container(
-                  width: 80,
-                  height: 40,
+                  width: 70,
+                  height: 50,
                 ),
                 Positioned(
                   top: -15,
                   left: 20,
                   child: Container(
-                    width: 80,
-                    height: 40,
+                    width: 70,
+                    height: 50,
                     decoration: const BoxDecoration(
                       color: Colors.red,
                       boxShadow: [
@@ -50,12 +52,12 @@ class AbilityTypeCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: Icon(Icons.airplane_ticket),
+                    child: Icon(ability["icon"]),
                   ),
                 ),
               ],
             ),
-            Text(ability),
+            Text(ability["name"]),
           ]),
     );
   }

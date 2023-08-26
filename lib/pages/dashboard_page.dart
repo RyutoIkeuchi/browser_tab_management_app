@@ -13,7 +13,14 @@ class _DashboardPageState extends State<DashboardPage>
   TabController? _tabController;
   int _currentIndex = 0;
   final key = GlobalKey();
-  final DUMMY_ABILITY_LIST = ["プログラミング", "インフラ（生活）", "副業", "転職", "物件"];
+  final List<Map<String, dynamic>> DUMMY_ABILITY_LIST = [
+    {"name": "プログラミング", "icon": Icons.language},
+    {"name": "インフラ（生活）", "icon": Icons.wb_incandescent},
+    {"name": "副業", "icon": Icons.monetization_on},
+    {"name": "転職", "icon": Icons.assignment_ind},
+    {"name": "物件", "icon": Icons.home}
+  ];
+
   final DUMMY_TAB_NAME_LIST = [
     'Flutter',
     'React',
