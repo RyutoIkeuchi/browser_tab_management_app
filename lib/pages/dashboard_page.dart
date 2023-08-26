@@ -14,11 +14,36 @@ class _DashboardPageState extends State<DashboardPage>
   int _currentIndex = 0;
   final key = GlobalKey();
   final List<Map<String, dynamic>> DUMMY_MAIN_PROPERTY_LIST = [
-    {"name": "プログラミング", "icon": Icons.language},
-    {"name": "インフラ（生活）", "icon": Icons.wb_incandescent},
-    {"name": "副業", "icon": Icons.monetization_on},
-    {"name": "転職", "icon": Icons.assignment_ind},
-    {"name": "物件", "icon": Icons.home}
+    {
+      "name": "プログラミング",
+      "icon": Icons.language,
+      "color": Colors.pink[400],
+      "description": "あああああああああああああ"
+    },
+    {
+      "name": "インフラ(生活)",
+      "icon": Icons.wb_incandescent,
+      "color": Colors.green[400],
+      "description": "あああああああああああああ"
+    },
+    {
+      "name": "副業",
+      "icon": Icons.monetization_on,
+      "color": Colors.amber[400],
+      "description": "あああああああああああああ"
+    },
+    {
+      "name": "転職",
+      "icon": Icons.assignment_ind,
+      "color": Colors.indigo[400],
+      "description": "あああああああああああああ"
+    },
+    {
+      "name": "物件",
+      "icon": Icons.home,
+      "color": Colors.purple[400],
+      "description": "あああああああああああああ"
+    }
   ];
 
   final DUMMY_SUB_PROPERTY_LIST = [
@@ -77,7 +102,7 @@ class _DashboardPageState extends State<DashboardPage>
         child: Column(children: [
           const SizedBox(height: 40),
           Container(
-            margin: EdgeInsets.only(bottom: 20),
+            margin: const EdgeInsets.only(bottom: 20),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: DUMMY_MAIN_PROPERTY_LIST
@@ -85,7 +110,7 @@ class _DashboardPageState extends State<DashboardPage>
                   .toList(),
             ),
           ),
-          Container(
+          SizedBox(
             height: 44,
             width: double.infinity,
             child: TabBar(
@@ -94,13 +119,11 @@ class _DashboardPageState extends State<DashboardPage>
               tabs: DUMMY_SUB_PROPERTY_LIST.map<Widget>((d) {
                 return Tab(
                   child: Center(
-                    child: Container(
-                      child: Text(
-                        d,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                        ),
+                    child: Text(
+                      d,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
