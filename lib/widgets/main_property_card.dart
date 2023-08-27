@@ -9,7 +9,7 @@ class MainPropertyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         margin: const EdgeInsets.only(left: 20),
-        width: 200,
+        width: 220,
         height: 120,
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
@@ -22,90 +22,98 @@ class MainPropertyCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Stack(
-                    clipBehavior: Clip.none,
+        child: OutlinedButton(
+            onPressed: () {
+              print(data);
+            },
+            style: OutlinedButton.styleFrom(
+              padding: const EdgeInsets.all(0),
+              side: BorderSide.none,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const SizedBox(
-                        width: 60,
-                        height: 46,
-                      ),
-                      Positioned(
-                        top: -10,
-                        left: 10,
-                        child: Container(
-                          width: 60,
-                          height: 46,
-                          decoration: BoxDecoration(
-                            color:  data["color"],
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.black54,
-                                offset: Offset(0, 5),
-                                blurRadius: 2.0,
-                                spreadRadius: 0,
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          const SizedBox(
+                            width: 60,
+                            height: 46,
+                          ),
+                          Positioned(
+                            top: -10,
+                            left: 10,
+                            child: Container(
+                              width: 60,
+                              height: 46,
+                              decoration: BoxDecoration(
+                                color: data["color"],
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black54,
+                                    offset: Offset(0, 5),
+                                    blurRadius: 2.0,
+                                    spreadRadius: 0,
+                                  ),
+                                ],
                               ),
-                            ],
+                              child: Icon(
+                                data["icon"],
+                                size: 30,
+                                color: Theme.of(context).canvasColor,
+                              ),
+                            ),
                           ),
-                          child: Icon(
-                            data["icon"],
-                            size: 30,
-                            color: Theme.of(context).canvasColor,
-                          ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.symmetric(vertical: 6),
-                          child: Text(
-                            data["name"],
-                            style: const TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
+                      Container(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.symmetric(vertical: 6),
+                              child: Text(
+                                data["name"],
+                                style: const TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(right: 4),
+                              child: Text(
+                                "8",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: Theme.of(context).primaryColor),
+                              ),
+                            )
+                          ],
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(right: 4),
-                          child: Text(
-                            "8",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Theme.of(context).primaryColor),
-                          ),
-                        )
-                      ],
+                      )
+                    ]),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                        color: Theme.of(context).dividerColor, //枠線の色
+                        width: 0.5, //枠線の太さ
+                      ),
                     ),
-                  )
-                ]),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(6),
-              decoration: BoxDecoration(
-                border: Border(
-                  top: BorderSide(
-                    color: Theme.of(context).dividerColor, //枠線の色
-                    width: 0.5, //枠線の太さ
                   ),
-                ),
-              ),
-              child: Text(
-                data["description"],
-                style:
-                    TextStyle(fontSize: 10, color: Theme.of(context).hintColor),
-              ),
-            )
-          ],
-        ));
+                  child: Text(
+                    data["description"],
+                    style: TextStyle(
+                        fontSize: 10, color: Theme.of(context).hintColor),
+                  ),
+                )
+              ],
+            )));
   }
 }
