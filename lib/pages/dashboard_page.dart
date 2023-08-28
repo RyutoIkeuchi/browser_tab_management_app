@@ -105,9 +105,15 @@ class _DashboardPageState extends State<DashboardPage>
             margin: const EdgeInsets.only(bottom: 20),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: DUMMY_MAIN_PROPERTY_LIST
-                  .map<Widget>((e) => MainPropertyCard(data: e))
-                  .toList(),
+              children: [
+                ...DUMMY_MAIN_PROPERTY_LIST,
+                {
+                  "name": null,
+                  "icon": null,
+                  "color": null,
+                  "description": null
+                },
+              ].map<Widget>((e) => MainPropertyCard(data: e)).toList(),
             ),
           ),
           SizedBox(
