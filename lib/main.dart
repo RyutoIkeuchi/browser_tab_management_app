@@ -102,6 +102,7 @@ class _BaseContainerState extends ConsumerState<BaseContainer> {
               });
             },
           ),
+          const VerticalDivider(thickness: 1, width: 1),
           SelectSidebarContent(selectedIndex: selectedIndex),
         ],
       ),

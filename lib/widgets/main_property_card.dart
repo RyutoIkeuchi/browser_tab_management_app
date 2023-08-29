@@ -19,6 +19,7 @@ class MainPropertyCardState extends State<MainPropertyCard> {
             height: 120,
             decoration: BoxDecoration(
               color: Theme.of(context).cardColor,
+              border: Border.all(color: Theme.of(context).hoverColor),
               boxShadow: const [
                 BoxShadow(
                   color: Colors.black26,

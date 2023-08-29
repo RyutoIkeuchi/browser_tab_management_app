@@ -98,7 +98,7 @@ class _DashboardPageState extends State<DashboardPage>
   Widget build(BuildContext context) {
     return Expanded(
       child: ColoredBox(
-        color: Theme.of(context).primaryColorLight,
+        color: Theme.of(context).cardColor,
         child: Column(children: [
           const SizedBox(height: 40),
           Container(
@@ -121,14 +121,16 @@ class _DashboardPageState extends State<DashboardPage>
             width: double.infinity,
             child: TabBar(
               isScrollable: true,
+              indicatorColor: Theme.of(context).disabledColor,
               controller: _tabController,
               tabs: DUMMY_SUB_PROPERTY_LIST.map<Widget>((d) {
                 return Tab(
                   child: Center(
                     child: Text(
                       d,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 20,
+                        color: Theme.of(context).disabledColor,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -139,7 +141,7 @@ class _DashboardPageState extends State<DashboardPage>
           ),
           Expanded(
             child: Container(
-              color: Colors.blue.shade200,
+              color: Theme.of(context).highlightColor,
               child: TabBarView(
                 key: key,
                 controller: _tabController,
