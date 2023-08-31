@@ -39,6 +39,7 @@ dependencies:
   metadata_fetch: ^0.4.1
   flutter_riverpod: ^2.3.6
   http: ^0.13.6
+  fl_chart: ^0.62.0
 
 dev_dependencies:
   flutter_test:
