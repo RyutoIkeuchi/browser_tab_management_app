@@ -1,3 +1,4 @@
+import 'package:browser_tab_management_app/features/chart/widgets/pie_chart_indicator.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +42,21 @@ class PieChartGraphState extends State<PieChartGraph> {
                 sectionsSpace: 0,
                 centerSpaceRadius: 40,
                 sections: pieChartGraphSections(touchedIndex))),
-          ))
+          )),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              PieChartIndicator(color: Colors.blue, title: "First"),
+              const SizedBox(height: 4),
+              PieChartIndicator(color: Colors.red, title: "Second"),
+              const SizedBox(height: 4),
+              PieChartIndicator(color: Colors.yellow, title: "Third"),
+              const SizedBox(height: 4),
+              PieChartIndicator(color: Colors.purple, title: "Four"),
+              const SizedBox(height: 18),
+            ],
+          )
         ],
       ),
     );
@@ -63,7 +78,7 @@ List<PieChartSectionData> pieChartGraphSections(int touchedIndex) {
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
-                fontWeight: FontWeight.bold,
+                color: Colors.white,
                 shadows: shadows));
       case 1:
         return PieChartSectionData(
@@ -73,7 +88,7 @@ List<PieChartSectionData> pieChartGraphSections(int touchedIndex) {
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
-                fontWeight: FontWeight.bold,
+                color: Colors.white,
                 shadows: shadows));
       case 2:
         return PieChartSectionData(
@@ -83,7 +98,7 @@ List<PieChartSectionData> pieChartGraphSections(int touchedIndex) {
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
-                fontWeight: FontWeight.bold,
+                color: Colors.white,
                 shadows: shadows));
       case 3:
         return PieChartSectionData(
@@ -93,7 +108,7 @@ List<PieChartSectionData> pieChartGraphSections(int touchedIndex) {
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
-                fontWeight: FontWeight.bold,
+                color: Colors.white,
                 shadows: shadows));
       default:
         throw Error();
