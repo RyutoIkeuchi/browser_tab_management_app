@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../constants/dummys/main_property_list.dart';
 import '../providers/sub_property_modal_position.dart';
 import '../providers/registration_url_data.dart';
 import '../providers/widget_global_key.dart';
@@ -89,12 +90,21 @@ class _PreviewRegisterOgpDataState
                         color: Theme.of(context).shadowColor,
                       ),
                       Container(
-                        margin: const EdgeInsets.only(bottom: 10),
-                        child: const Text(
-                          'プロパティ',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ),
+                          margin: const EdgeInsets.only(bottom: 10, left: 10),
+                          child: DropdownButtonHideUnderline(
+                              child: DropdownButton(
+                            items: DUMMY_MAIN_PROPERTY_LIST
+                                .map(
+                                  (d) => DropdownMenuItem(
+                                    value: d['name'],
+                                    child: Text(d["name"]),
+                                  ),
+                                )
+                                .toList(),
+                            value: null,
+                            hint: Text('選択してください'),
+                            onChanged: (value) {},
+                          ))),
                       OutlinedButton(
                         key: subPropertyKey,
                         onPressed: () {
