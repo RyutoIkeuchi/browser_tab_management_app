@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../constants/dummys/main_property_list.dart';
+import '../providers/main_property_list.dart';
 import '../providers/sub_property_modal_position.dart';
 import '../providers/registration_url_data.dart';
 import '../providers/widget_global_key.dart';
@@ -15,11 +15,21 @@ class PreviewRegisterOgpData extends ConsumerStatefulWidget {
 
 class _PreviewRegisterOgpDataState
     extends ConsumerState<PreviewRegisterOgpData> {
+  Map<String, dynamic>? selectedMainProperty = {
+    "id": null,
+    "name": null,
+    "icon": null,
+    "color": null,
+    "description": null
+  };
+
   @override
   Widget build(BuildContext context) {
     final GlobalKey subPropertyKey = ref.watch(subPropertyWidgetKeyProvider);
     final Map<String, dynamic> registrationURLData =
         ref.watch(registrationURLDataProvider);
+    final List<Map<String, dynamic>> mainPropertyList =
+        ref.watch(mainPropertyListProvider);
 
     return Container(
         width: 600,
@@ -93,7 +103,7 @@ class _PreviewRegisterOgpDataState
                           margin: const EdgeInsets.only(bottom: 10, left: 10),
                           child: DropdownButtonHideUnderline(
                               child: DropdownButton(
-                            items: DUMMY_MAIN_PROPERTY_LIST
+                            items: mainPropertyList
                                 .map(
                                   (d) => DropdownMenuItem(
                                     value: d['name'],
@@ -101,9 +111,16 @@ class _PreviewRegisterOgpDataState
                                   ),
                                 )
                                 .toList(),
-                            value: null,
-                            hint: Text('選択してください'),
-                            onChanged: (value) {},
+                            value: selectedMainProperty!["name"],
+                            hint: const Text('プロパティを選択する'),
+                            onChanged: (value) {
+                              Map<String, dynamic> foundSelectMainProperty =
+                                  mainPropertyList.firstWhere(
+                                      (element) => element["name"] == value);
+                              setState(() {
+                                selectedMainProperty = foundSelectMainProperty;
+                              });
+                            },
                           ))),
                       OutlinedButton(
                         key: subPropertyKey,
