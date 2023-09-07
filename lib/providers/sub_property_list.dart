@@ -1,3 +1,4 @@
+import 'package:browser_tab_management_app/constants/dummys/sub_property_list.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final subPropertyListProvider =
@@ -6,7 +7,7 @@ final subPropertyListProvider =
 
 class SubPropertyListNotifier
     extends StateNotifier<List<Map<String, dynamic>>> {
-  SubPropertyListNotifier() : super(INITIAL_SUB_PROPERTY_LIST);
+  SubPropertyListNotifier() : super(DUMMY_SUB_PROPERTY_LIST);
 
   void add(targetSubProperty) {
     state = [...state, targetSubProperty];
@@ -19,13 +20,3 @@ class SubPropertyListNotifier
     state = updateSubPropertyList;
   }
 }
-
-List<Map<String, dynamic>> INITIAL_SUB_PROPERTY_LIST = [
-  {"id": 1, "name": "Hello"},
-  {"id": 2, "name": "World"},
-  {"id": 3, "name": "!!!!!!!!!"},
-  {"id": 4, "name": "Flutter"},
-  {"id": 5, "name": "React"},
-  {"id": 6, "name": "HTML"},
-  {"id": 7, "name": "Python"},
-];
