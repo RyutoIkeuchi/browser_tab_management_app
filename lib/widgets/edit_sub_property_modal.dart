@@ -30,48 +30,50 @@ class EditSubPropertyModal extends ConsumerWidget {
             ]),
             child: Column(children: [
               Container(
-                height: 60,
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
                   color: Colors.grey[100],
                 ),
                 child: Column(children: [
-                  Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: registrationURLData["sub_property_list"]
-                          .map<Widget>((e) => Container(
-                              margin: const EdgeInsets.only(right: 6),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: Theme.of(context).focusColor),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    e["name"],
-                                    style: TextStyle(
-                                        color: Theme.of(context).hintColor),
-                                  ),
-                                  IconButton(
-                                      padding: EdgeInsets.zero,
-                                      constraints: const BoxConstraints(),
-                                      color: Theme.of(context).hintColor,
-                                      iconSize: 16,
-                                      onPressed: () {
-                                        ref
-                                            .read(registrationURLDataProvider
-                                                .notifier)
-                                            .removeTargetSubProperty(e['id']);
-                                        ref
-                                            .read(subPropertyListProvider
-                                                .notifier)
-                                            .add(e);
-                                      },
-                                      icon: const Icon(Icons.close))
-                                ],
-                              )))
-                          .toList()),
+                  SizedBox(
+                    height: 38,
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: registrationURLData["sub_property_list"]
+                            .map<Widget>((e) => Container(
+                                margin: const EdgeInsets.only(right: 6),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                    color: Theme.of(context).focusColor),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      e["name"],
+                                      style: TextStyle(
+                                          color: Theme.of(context).hintColor),
+                                    ),
+                                    IconButton(
+                                        padding: EdgeInsets.zero,
+                                        constraints: const BoxConstraints(),
+                                        color: Theme.of(context).hintColor,
+                                        iconSize: 16,
+                                        onPressed: () {
+                                          ref
+                                              .read(registrationURLDataProvider
+                                                  .notifier)
+                                              .removeTargetSubProperty(e['id']);
+                                          ref
+                                              .read(subPropertyListProvider
+                                                  .notifier)
+                                              .add(e);
+                                        },
+                                        icon: const Icon(Icons.close))
+                                  ],
+                                )))
+                            .toList()),
+                  ),
                   const Padding(
                       padding: EdgeInsets.all(8),
                       child: Align(
@@ -82,7 +84,7 @@ class EditSubPropertyModal extends ConsumerWidget {
                         ),
                       )),
                   Container(
-                    width: 20,
+                      height: 214,
                       child: ListView.builder(
                         itemCount: subPropertyList.length,
                         itemBuilder: (context, index) {
