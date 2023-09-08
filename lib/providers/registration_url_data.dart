@@ -14,9 +14,14 @@ class RegistrationURLDataNotifier extends StateNotifier<Map<String, dynamic>> {
       "title": response?.title,
       "description": response?.description,
       "image": response?.image,
+      "main_property": null,
       "sub_property_list": []
     };
     state = newStateFromOgpData;
+  }
+
+  void selectMainProperty(mainProperty) {
+    state = {...state, "main_property": mainProperty};
   }
 
   void addSubProperty(newSubProperty) {
@@ -40,5 +45,6 @@ final Map<String, dynamic> INITIAL_URL_DATA = {
   "title": "ここにタイトルが入ります",
   "description": "ここにブラウザの詳細情報が入ります。",
   "image": "",
+  "main_property": null,
   "sub_property_list": [],
 };

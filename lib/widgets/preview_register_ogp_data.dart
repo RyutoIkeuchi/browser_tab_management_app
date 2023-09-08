@@ -1,3 +1,4 @@
+import 'package:browser_tab_management_app/providers/sub_property_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,14 +16,6 @@ class PreviewRegisterOgpData extends ConsumerStatefulWidget {
 
 class _PreviewRegisterOgpDataState
     extends ConsumerState<PreviewRegisterOgpData> {
-  Map<String, dynamic>? selectedMainProperty = {
-    "id": null,
-    "name": null,
-    "icon": null,
-    "color": null,
-    "description": null
-  };
-
   @override
   Widget build(BuildContext context) {
     final GlobalKey subPropertyKey = ref.watch(subPropertyWidgetKeyProvider);
@@ -111,15 +104,17 @@ class _PreviewRegisterOgpDataState
                                   ),
                                 )
                                 .toList(),
-                            value: selectedMainProperty!["name"],
+                            value: registrationURLData["main_property"] != null
+                                ? registrationURLData["main_property"]["name"]
+                                : null,
                             hint: const Text('プロパティを選択する'),
                             onChanged: (value) {
                               Map<String, dynamic> foundSelectMainProperty =
                                   mainPropertyList.firstWhere(
                                       (element) => element["name"] == value);
-                              setState(() {
-                                selectedMainProperty = foundSelectMainProperty;
-                              });
+                              ref
+                                  .read(registrationURLDataProvider.notifier)
+                                  .selectMainProperty(foundSelectMainProperty);
                             },
                           ))),
                       OutlinedButton(

@@ -14,6 +14,13 @@ class EditSubPropertyModal extends ConsumerWidget {
     final registrationURLData = ref.watch(registrationURLDataProvider);
     final subPropertyList = ref.watch(subPropertyListProvider);
 
+    final filterSubPropertyList = subPropertyList.where((item) {
+      final mainPropertyId = registrationURLData["main_property"] != null
+          ? registrationURLData["main_property"]["id"]
+          : null;
+      return mainPropertyId == item["main_property_id"];
+    }).toList();
+
     return Positioned(
         top: subPropertyListPosition["top"],
         left: subPropertyListPosition["left"],
@@ -86,16 +93,16 @@ class EditSubPropertyModal extends ConsumerWidget {
                   Container(
                       height: 214,
                       child: ListView.builder(
-                        itemCount: subPropertyList.length,
+                        itemCount: filterSubPropertyList.length,
                         itemBuilder: (context, index) {
                           return TextButton(
                             onPressed: () {
                               ref
                                   .read(registrationURLDataProvider.notifier)
-                                  .addSubProperty(subPropertyList[index]);
+                                  .addSubProperty(filterSubPropertyList[index]);
                               ref
                                   .read(subPropertyListProvider.notifier)
-                                  .remove(subPropertyList[index]["id"]);
+                                  .remove(filterSubPropertyList[index]["id"]);
                             },
                             child: Container(
                               padding: const EdgeInsets.only(
@@ -110,7 +117,7 @@ class EditSubPropertyModal extends ConsumerWidget {
                                         size: 16,
                                       ),
                                     ),
-                                    Text(subPropertyList[index]['name']),
+                                    Text(filterSubPropertyList[index]['name']),
                                   ]),
                             ),
                           );
