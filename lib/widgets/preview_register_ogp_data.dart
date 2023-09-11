@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:browser_tab_management_app/providers/sub_property_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // 追記する
 
 import '../providers/main_property_list.dart';
 import '../providers/sub_property_modal_position.dart';
@@ -23,6 +26,12 @@ class _PreviewRegisterOgpDataState
         ref.watch(registrationURLDataProvider);
     final List<Map<String, dynamic>> mainPropertyList =
         ref.watch(mainPropertyListProvider);
+
+    Future<void> saveOgpDataToLocal(ogpData) async {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      final jsonString = jsonEncode(ogpData).toString();
+      await prefs.setString("OGP_DATA", jsonString);
+    }
 
     return Container(
         width: 600,
@@ -52,7 +61,12 @@ class _PreviewRegisterOgpDataState
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TextButton(onPressed: () {}, child: const Text('キャンセル')),
-                      TextButton(onPressed: () {}, child: const Text('保存する'))
+                      TextButton(
+                          onPressed: () {
+                            saveOgpDataToLocal(
+                                registrationURLData);
+                          },
+                          child: const Text('保存する'))
                     ]),
               ),
               SizedBox(
