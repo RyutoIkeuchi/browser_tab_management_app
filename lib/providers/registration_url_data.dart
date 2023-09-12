@@ -39,6 +39,10 @@ class RegistrationURLDataNotifier extends StateNotifier<Map<String, dynamic>> {
             .toList();
     state = {...state, "sub_property_list": updateSubProperty};
   }
+
+  void reset() {
+    state = INITIAL_URL_DATA;
+  }
 }
 
 final Map<String, dynamic> INITIAL_URL_DATA = {

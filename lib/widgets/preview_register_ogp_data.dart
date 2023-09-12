@@ -31,6 +31,7 @@ class _PreviewRegisterOgpDataState
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       final jsonString = jsonEncode(ogpData).toString();
       await prefs.setString("OGP_DATA", jsonString);
+      ref.read(registrationURLDataProvider.notifier).reset();
     }
 
     return Container(
@@ -60,11 +61,16 @@ class _PreviewRegisterOgpDataState
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      TextButton(onPressed: () {}, child: const Text('キャンセル')),
                       TextButton(
                           onPressed: () {
-                            saveOgpDataToLocal(
-                                registrationURLData);
+                            ref
+                                .read(registrationURLDataProvider.notifier)
+                                .reset();
+                          },
+                          child: const Text('キャンセル')),
+                      TextButton(
+                          onPressed: () {
+                            saveOgpDataToLocal(registrationURLData);
                           },
                           child: const Text('保存する'))
                     ]),
