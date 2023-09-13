@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UrlList extends StatefulWidget {
   const UrlList({super.key});
@@ -21,10 +22,17 @@ class _UrlListState extends State<UrlList> {
     });
   }
 
+  Future<void> getOgpDataListFromLocal() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final response = await prefs.getString("OGP_DATA");
+    print(response);
+  }
+
   @override
   void initState() {
     super.initState();
     fetchJsonPlaceHolderApi();
+    getOgpDataListFromLocal();
   }
 
   @override

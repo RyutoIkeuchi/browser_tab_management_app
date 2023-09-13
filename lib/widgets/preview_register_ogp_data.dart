@@ -19,6 +19,20 @@ class PreviewRegisterOgpData extends ConsumerStatefulWidget {
 
 class _PreviewRegisterOgpDataState
     extends ConsumerState<PreviewRegisterOgpData> {
+  Future<void> saveOgpDataToLocal(ogpData) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final formattedSubPropertyList =
+        ogpData['sub_property_list'].map((d) => d["id"]).toList();
+    final formattedOgpData = {
+      ...ogpData,
+      "main_property": ogpData["main_property"]["id"],
+      "sub_property_list": formattedSubPropertyList
+    };
+    final jsonString = jsonEncode(formattedOgpData).toString();
+    await prefs.setString("OGP_DATA", jsonString);
+    ref.read(registrationURLDataProvider.notifier).reset();
+  }
+
   @override
   Widget build(BuildContext context) {
     final GlobalKey subPropertyKey = ref.watch(subPropertyWidgetKeyProvider);
@@ -26,13 +40,6 @@ class _PreviewRegisterOgpDataState
         ref.watch(registrationURLDataProvider);
     final List<Map<String, dynamic>> mainPropertyList =
         ref.watch(mainPropertyListProvider);
-
-    Future<void> saveOgpDataToLocal(ogpData) async {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      final jsonString = jsonEncode(ogpData).toString();
-      await prefs.setString("OGP_DATA", jsonString);
-      ref.read(registrationURLDataProvider.notifier).reset();
-    }
 
     return Container(
         width: 600,
