@@ -28,7 +28,11 @@ class _PreviewRegisterOgpDataState
       "main_property": ogpData["main_property"]["id"],
       "sub_property_list": formattedSubPropertyList
     };
-    final jsonString = jsonEncode(formattedOgpData).toString();
+    final response = await prefs.getString("OGP_DATA");
+    final registrationData = response != null
+        ? [...jsonDecode(response!), formattedOgpData]
+        : [formattedOgpData];
+    final jsonString = jsonEncode(registrationData).toString();
     await prefs.setString("OGP_DATA", jsonString);
     ref.read(registrationURLDataProvider.notifier).reset();
   }
