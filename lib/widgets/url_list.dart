@@ -13,6 +13,7 @@ class UrlList extends StatefulWidget {
 class _UrlListState extends State<UrlList> {
   List photosList = [];
   int? hoveredItemIndex = null;
+  List urlList = [];
 
   Future fetchJsonPlaceHolderApi() async {
     final response = await http.get(Uri.parse(
@@ -24,8 +25,8 @@ class _UrlListState extends State<UrlList> {
 
   Future<void> getOgpDataListFromLocal() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final response = await prefs.getString("OGP_DATA");
-    print(response);
+    final response = prefs.getString("OGP_DATA");
+    urlList = jsonDecode(response!);
   }
 
   @override
@@ -39,7 +40,7 @@ class _UrlListState extends State<UrlList> {
   Widget build(BuildContext context) {
     return GridView.builder(
       padding: const EdgeInsets.all(20),
-      itemCount: photosList.length,
+      itemCount: urlList.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisSpacing: 20,
           mainAxisSpacing: 20,
@@ -76,8 +77,8 @@ class _UrlListState extends State<UrlList> {
                         SizedBox(
                           width: double.infinity,
                           height: 240 * 0.66,
-                          child: photosList[index]["url"] != ""
-                              ? Image.network(photosList[index]["url"],
+                          child: urlList[index]["image"] != ""
+                              ? Image.network(urlList[index]["image"],
                                   fit: BoxFit.cover)
                               : ColoredBox(
                                   color: Theme.of(context).highlightColor,
@@ -89,7 +90,7 @@ class _UrlListState extends State<UrlList> {
                             padding: const EdgeInsets.all(10),
                             child: Container(
                               child: Text(
-                                photosList[index]["title"],
+                                urlList[index]["title"],
                                 style: const TextStyle(fontSize: 16),
                               ),
                             )),
