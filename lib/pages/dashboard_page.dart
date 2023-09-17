@@ -15,13 +15,13 @@ class _DashboardPageState extends State<DashboardPage>
   TabController? _tabController;
   int _currentIndex = 0;
   int? selectedMainPropertyId = null;
+  List subPropertyList = DUMMY_SUB_PROPERTY_LIST;
   final key = GlobalKey();
 
   @override
   void initState() {
     super.initState();
-    _tabController =
-        TabController(vsync: this, length: DUMMY_SUB_PROPERTY_LIST.length);
+    _tabController = TabController(vsync: this, length: subPropertyList.length);
     _tabController!.addListener(() {
       setState(() {
         _currentIndex = _tabController!.index;
@@ -38,6 +38,9 @@ class _DashboardPageState extends State<DashboardPage>
   void handleChangeMainPropertyId(selectedId) {
     setState(() {
       selectedMainPropertyId = selectedId;
+      subPropertyList = DUMMY_SUB_PROPERTY_LIST
+          .where((element) => element["main_property_id"] == selectedId)
+          .toList();
     });
   }
 
@@ -74,7 +77,7 @@ class _DashboardPageState extends State<DashboardPage>
               isScrollable: true,
               indicatorColor: Theme.of(context).disabledColor,
               controller: _tabController,
-              tabs: DUMMY_SUB_PROPERTY_LIST.map<Widget>((d) {
+              tabs: subPropertyList.map<Widget>((d) {
                 return Tab(
                   child: Center(
                     child: Text(
