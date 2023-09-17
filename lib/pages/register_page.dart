@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:metadata_fetch/metadata_fetch.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../widgets/edit_sub_property_modal.dart';
-import '../widgets/input_register_url_form.dart';
-import '../widgets/preview_register_ogp_data.dart';
+import '../features/register_url/widgets/edit_sub_property_modal.dart';
+import '../features/register_url/widgets/input_register_url_form.dart';
+import '../features/register_url/widgets/preview_register_ogp_data.dart';
 import '../providers/sub_property_modal_position.dart';
 import '../providers/registration_url_data.dart';
 

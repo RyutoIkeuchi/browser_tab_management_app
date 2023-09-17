@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart'; // 追記する
 
-import '../providers/main_property_list.dart';
-import '../providers/sub_property_modal_position.dart';
-import '../providers/registration_url_data.dart';
-import '../providers/widget_global_key.dart';
+import '../../../providers/main_property_list.dart';
+import '../../../providers/sub_property_modal_position.dart';
+import '../../../providers/registration_url_data.dart';
+import '../../../providers/widget_global_key.dart';
 
 class PreviewRegisterOgpData extends ConsumerStatefulWidget {
   const PreviewRegisterOgpData({Key? key}) : super(key: key);

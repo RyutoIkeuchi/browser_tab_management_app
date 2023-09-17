@@ -1,9 +1,8 @@
-import 'package:browser_tab_management_app/widgets/main_property_card.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/dummys/main_property_list.dart';
 import '../constants/dummys/sub_property_list.dart';
-import '../widgets/url_list.dart';
+import '../features/dashboard/widgets/url_list.dart';
 
 class DashboardPage extends StatefulWidget {
   @override

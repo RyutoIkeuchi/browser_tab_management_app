@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/sub_property_list.dart';
-import '../providers/registration_url_data.dart';
-import '../providers/sub_property_modal_position.dart';
+import '../../../providers/sub_property_list.dart';
+import '../../../providers/registration_url_data.dart';
+import '../../../providers/sub_property_modal_position.dart';
 
 class EditSubPropertyModal extends ConsumerWidget {
   const EditSubPropertyModal({super.key});
