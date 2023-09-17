@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class MainPropertyCard extends StatefulWidget {
   final Map<String, dynamic> data; //上位Widgetから受け取りたいデータ
-  const MainPropertyCard({required this.data});
+  final handleChangeMainPropertyId; //上位Widgetから受け取りたいデータ
+  MainPropertyCard(
+      {required this.data, required this.handleChangeMainPropertyId});
 
   MainPropertyCardState createState() => MainPropertyCardState();
 }
@@ -31,7 +33,7 @@ class MainPropertyCardState extends State<MainPropertyCard> {
             ),
             child: OutlinedButton(
                 onPressed: () {
-                  print(widget.data);
+                  widget.handleChangeMainPropertyId(widget.data["id"]);
                 },
                 style: OutlinedButton.styleFrom(
                   padding: const EdgeInsets.all(0),

@@ -14,6 +14,7 @@ class _DashboardPageState extends State<DashboardPage>
     with SingleTickerProviderStateMixin {
   TabController? _tabController;
   int _currentIndex = 0;
+  int? selectedMainPropertyId = null;
   final key = GlobalKey();
 
   @override
@@ -32,6 +33,12 @@ class _DashboardPageState extends State<DashboardPage>
   void dispose() {
     _tabController?.dispose();
     super.dispose();
+  }
+
+  void handleChangeMainPropertyId(selectedId) {
+    setState(() {
+      selectedMainPropertyId = selectedId;
+    });
   }
 
   @override
@@ -53,7 +60,11 @@ class _DashboardPageState extends State<DashboardPage>
                   "color": null,
                   "description": null
                 },
-              ].map<Widget>((e) => MainPropertyCard(data: e)).toList(),
+              ]
+                  .map<Widget>((e) => MainPropertyCard(
+                      data: e,
+                      handleChangeMainPropertyId: handleChangeMainPropertyId))
+                  .toList(),
             ),
           ),
           SizedBox(
