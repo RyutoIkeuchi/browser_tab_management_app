@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../constants/dummys/main_property_list.dart';
 import '../constants/dummys/sub_property_list.dart';
+import '../features/dashboard/widgets/main_property_card.dart';
 import '../features/dashboard/widgets/url_list.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -65,7 +66,8 @@ class _DashboardPageState extends State<DashboardPage>
               ]
                   .map<Widget>((e) => MainPropertyCard(
                       data: e,
-                      handleChangeMainPropertyId: handleChangeMainPropertyId))
+                      handleChangeMainPropertyId: handleChangeMainPropertyId,
+                      selectedMainPropertyId: selectedMainPropertyId))
                   .toList(),
             ),
           ),

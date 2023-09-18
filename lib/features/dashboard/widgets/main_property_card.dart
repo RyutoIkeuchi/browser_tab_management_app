@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 class MainPropertyCard extends StatefulWidget {
-  final Map<String, dynamic> data; //上位Widgetから受け取りたいデータ
-  final handleChangeMainPropertyId; //上位Widgetから受け取りたいデータ
+  final Map<String, dynamic> data;
+  final handleChangeMainPropertyId;
+  final selectedMainPropertyId;
   MainPropertyCard(
-      {required this.data, required this.handleChangeMainPropertyId});
+      {required this.data,
+      required this.handleChangeMainPropertyId,
+      required this.selectedMainPropertyId});
 
   MainPropertyCardState createState() => MainPropertyCardState();
 }
@@ -20,7 +23,9 @@ class MainPropertyCardState extends State<MainPropertyCard> {
             width: 220,
             height: 120,
             decoration: BoxDecoration(
-              color: Theme.of(context).cardColor,
+              color: widget.data["id"] == widget.selectedMainPropertyId
+                  ? Theme.of(context).secondaryHeaderColor
+                  : Theme.of(context).cardColor,
               border: Border.all(color: Theme.of(context).hoverColor),
               boxShadow: const [
                 BoxShadow(
