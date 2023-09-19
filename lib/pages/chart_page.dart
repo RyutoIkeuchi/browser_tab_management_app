@@ -15,13 +15,14 @@ class ChartPage extends StatelessWidget {
           color: Theme.of(context).secondaryHeaderColor,
           child: Container(
               padding: const EdgeInsets.all(60),
+              height: double.infinity,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(width: 600, child: LineChartGraph()),
-                  SizedBox(width: 600, child: BarChartGraph()),
-                  SizedBox(width: 200, child: PieChartGraph())
+                  SizedBox(width: 400, height: 300, child: BarChartGraph()),
+                  SizedBox(width: 300, child: PieChartGraph())
                 ],
               ))),
     );
