@@ -37,10 +37,15 @@ class _DashboardPageState extends State<DashboardPage>
 
   void handleChangeMainPropertyId(selectedId) {
     setState(() {
-      selectedMainPropertyId = selectedId;
-      subPropertyList = DUMMY_SUB_PROPERTY_LIST
-          .where((element) => element["main_property_id"] == selectedId)
-          .toList();
+      if (selectedMainPropertyId == selectedId) {
+        selectedMainPropertyId = null;
+        subPropertyList = DUMMY_SUB_PROPERTY_LIST;
+      } else {
+        selectedMainPropertyId = selectedId;
+        subPropertyList = DUMMY_SUB_PROPERTY_LIST
+            .where((element) => element["main_property_id"] == selectedId)
+            .toList();
+      }
     });
   }
 
