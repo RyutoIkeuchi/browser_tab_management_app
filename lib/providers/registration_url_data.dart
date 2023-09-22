@@ -14,6 +14,7 @@ class RegistrationURLDataNotifier extends StateNotifier<Map<String, dynamic>> {
       "title": response?.title,
       "description": response?.description,
       "image": response?.image,
+      "url": inputUrl,
       "main_property": null,
       "sub_property_list": []
     };
@@ -49,6 +50,7 @@ final Map<String, dynamic> INITIAL_URL_DATA = {
   "title": "ここにタイトルが入ります",
   "description": "ここにブラウザの詳細情報が入ります。",
   "image": "",
+  "url": "",
   "main_property": null,
   "sub_property_list": [],
 };

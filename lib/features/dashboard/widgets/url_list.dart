@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -103,7 +104,15 @@ class _UrlListState extends State<UrlList> {
                       right: 4,
                       child: IconButton(
                           color: Theme.of(context).canvasColor,
-                          onPressed: () {},
+                          onPressed: () async {
+                            if (await canLaunch(urlList[index]["url"])) {
+                              await launch(
+                                urlList[index]["url"],
+                                forceSafariVC: true,
+                                forceWebView: true,
+                              );
+                            }
+                          },
                           icon: const Icon(Icons.open_in_new)))
                   : Container(child: null)
             ]));
