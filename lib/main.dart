@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'providers/widget_global_key.dart';
 import 'select_sidebar_content.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await dotenv.load(fileName: '.env');
+  await Supabase.initialize(
+    url: dotenv.get('YOUR_SUPABASE_URL'),
+    anonKey: dotenv.get('YOUR_SUPABASE_ANON_KEY'),
+  );
   runApp(
     const ProviderScope(child: MyApp()),
   );
@@ -19,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: FlexThemeData.light(scheme: FlexScheme.brandBlue),
-      darkTheme: FlexThemeData.dark(scheme: FlexScheme.brandBlue),
+      // darkTheme: FlexThemeData.dark(scheme: FlexScheme.brandBlue),
       themeMode: ThemeMode.system,
       home: const BaseContainer(),
     );
@@ -42,6 +51,8 @@ class _BaseContainerState extends ConsumerState<BaseContainer> {
     final GlobalKey appBarKey = ref.watch(appBarGlobalKeyProvider);
     final GlobalKey navigationRailKey =
         ref.watch(navigationRailGlobalKeyProvider);
+    final supabase = Supabase.instance.client;
+    print(supabase);
 
     return Scaffold(
       appBar: AppBar(
