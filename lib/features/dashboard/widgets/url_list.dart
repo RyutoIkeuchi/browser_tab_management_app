@@ -103,17 +103,18 @@ class _UrlListState extends State<UrlList> {
                       top: 4,
                       right: 4,
                       child: IconButton(
-                          color: Theme.of(context).canvasColor,
-                          onPressed: () async {
-                            if (await canLaunch(urlList[index]["url"])) {
-                              await launch(
-                                urlList[index]["url"],
-                                forceSafariVC: true,
-                                forceWebView: true,
-                              );
-                            }
-                          },
-                          icon: const Icon(Icons.open_in_new)))
+                        color: Theme.of(context).focusColor,
+                        onPressed: () async {
+                          if (await canLaunch(urlList[index]["url"])) {
+                            await launch(
+                              urlList[index]["url"],
+                              forceSafariVC: true,
+                              forceWebView: true,
+                            );
+                          }
+                        },
+                        icon: const Icon(Icons.open_in_new),
+                      ))
                   : Container(child: null)
             ]));
       },
