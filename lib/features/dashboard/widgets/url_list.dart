@@ -64,7 +64,9 @@ class _UrlListState extends State<UrlList> {
             child: Stack(clipBehavior: Clip.none, children: [
               Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor,
+                    color: hoveredItemIndex == index
+                        ? Theme.of(context).cardColor.withOpacity(0.9)
+                        : Theme.of(context).cardColor,
                     boxShadow: [
                       BoxShadow(
                         color: Theme.of(context).shadowColor,
@@ -98,11 +100,13 @@ class _UrlListState extends State<UrlList> {
                       ],
                     ),
                   )),
-              hoveredItemIndex == index
-                  ? Positioned(
-                      top: 4,
-                      right: 4,
-                      child: IconButton(
+              Positioned(
+                  top: 4,
+                  right: 4,
+                  child: AnimatedOpacity(
+                    opacity: hoveredItemIndex == index ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 200),
+                    child: IconButton(
                         color: Theme.of(context).focusColor,
                         onPressed: () async {
                           if (await canLaunch(urlList[index]["url"])) {
@@ -113,9 +117,8 @@ class _UrlListState extends State<UrlList> {
                             );
                           }
                         },
-                        icon: const Icon(Icons.open_in_new),
-                      ))
-                  : Container(child: null)
+                        icon: const Icon(Icons.open_in_new)),
+                  ))
             ]));
       },
     );
